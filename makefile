@@ -13,7 +13,7 @@ CXXFLAGS=-O0 -g3 -Wall -c -fmessage-length=0 $(CPPFLAGS) $(INCLUDES)
 
 RM=rm -f
 
-SOURCES=./main.cpp ./rfid/MFRC522.cpp ./spiclass.cpp
+SOURCES=./main.cpp ./rfid/MFRC522.cpp ./spiclass.cpp ./MFRC522Desfire.cpp
 
 OBJECTS=$(SOURCES:.cpp=.o)
 

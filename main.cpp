@@ -1,4 +1,4 @@
-#include <MFRC522.h>
+#include <MFRC522Desfire.h>
 #include <Arduino.h>
 #include <unistd.h>
 
@@ -57,7 +57,7 @@ int main( int argc, const char* argv[] )
 {
   Serial.println("RFID Test");
 	SPI.open(1,0);
-  MFRC522 mfrc522(RC522_CS, RC522_RESET);
+  MFRC522Desfire mfrc522(RC522_CS, RC522_RESET);
 
 	mfrc522.PCD_Init();
   /*bool hasFailed = !mfrc522.PCD_PerformSelfTest();

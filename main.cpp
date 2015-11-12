@@ -88,8 +88,23 @@ int main( int argc, const char* argv[] )
 	}
 	
 	MFRC522::Uid uid;
-	mfrc522.PICC_Select(&uid);
+	
+	if (mfrc522.PICC_Select(&uid) != mfrc522.STATUS_OK){
+		Serial.println("No Desfire Card");
+	}
+	Serial.println("Select Application 0x000005");
+	if (mfrc522.Desfire_SelectApplication(0x000005) != mfrc522.STATUS_OK){
+		Serial.println("Select Application failed");
+	}
 	Serial.println(uid.size);
+	Serial.println(uid.uidByte[0]);
+	Serial.println(uid.uidByte[1]);
+	Serial.println(uid.uidByte[2]);
+	Serial.println(uid.uidByte[3]);
+	Serial.println(uid.uidByte[4]);
+	Serial.println(uid.uidByte[5]);
+	Serial.println(uid.uidByte[6]);
+	Serial.println(uid.sak);
 	//mfrc522.PICC_ReadCardSerial();
 	//mfrc522.PICC_DumpToSerial(&(mfrc522.uid));
 	
@@ -99,6 +114,8 @@ int main( int argc, const char* argv[] )
 	usleep(5000);
 	mfrc522.PCD_SetRegisterBitMask(mfrc522.BitFramingReg, 0x80);
 	}*/
+	
+	mfrc522.PCD_AntennaOff();
 
   Serial.println("RFID Test finished");
 }

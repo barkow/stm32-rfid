@@ -1,6 +1,7 @@
 #include "MFRC522Desfire.h"
 #include "Arduino.h"
 #include <unistd.h>
+#include <stdexcept>
 
 #define RC522_CS 0
 #define RC522_RESET 1
@@ -60,61 +61,80 @@ int main( int argc, const char* argv[] )
 	MFRC522Desfire mfrc522(RC522_CS, RC522_RESET);
 
 	mfrc522.PCD_Init();
-  /*bool hasFailed = !mfrc522.PCD_PerformSelfTest();
-  if (hasFailed) {
-    Serial.println("Selftest failed");
-    hasFailed = !mfrc522.PCD_PerformSelfTest();
-     mfrc522.PCD_Init();
-  }
-  if (hasFailed) {
-    Serial.println("Selftest failed");
-    hasFailed = !mfrc522.PCD_PerformSelfTest();
-     mfrc522.PCD_Init();
-  }*/
 
-  //byte v = mfrc522.PCD_ReadRegister(mfrc522.VersionReg);
-  //Serial.println(v);
 	mfrc522.PCD_WriteRegister(mfrc522.GsNReg, 0xff);
 	mfrc522.PCD_WriteRegister(mfrc522.CWGsPReg, 0x3f);
 	mfrc522.PCD_SetAntennaGain(0xff);
 
-	int timeout = 3000;
-	while (!mfrc522.PICC_IsNewCardPresent() && timeout > 0){timeout--;};
-	if (timeout <= 0){
-		Serial.println("Timeout");
-	}
-	else {
-		Serial.println("Card detected");
-	}
+	try{
+		int timeout = 3000;
+		while (!mfrc522.PICC_IsNewCardPresent() && timeout > 0){timeout--;};
+		if (timeout <= 0){
+			 throw std::runtime_error("Timeout");
+		}
+		else {
+			Serial.println("Card detected");
+		}
+
+		MFRC522::Uid uid;
+		if (mfrc522.PICC_Select(&uid) != mfrc522.STATUS_OK){
+			throw std::runtime_error("No Desfire Card");
+		}
+		Serial.println("Select Application 0x000005");
+		if (mfrc522.Desfire_SelectApplication(0x000005) != mfrc522.STATUS_OK){
+			throw std::runtime_error("Select Application failed");
+		}
+
+		if (mfrc522.Desfire_Authenticate(1, "password1") != mfrc522.STATUS_OK){
+			throw std::runtime_error("Auth failed");
+		}
+		byte data[32];
+		byte dataLen = 32;
+		if (mfrc522.Desfire_ReadData(5, 0, 32, data, &dataLen) != mfrc522.STATUS_OK){
+			throw std::runtime_error("Readdata failed");
+		}
+		Serial.println("Data");
+		Serial.println((((uint32_t) data[0]) << 24) + (((uint32_t) data[1]) << 16) + (((uint32_t) data[2]) << 8) + (((uint32_t) data[3]) << 0));
+		Serial.println("Select Application 0x0000f7");
+		if (mfrc522.Desfire_SelectApplication(0x0000f7) != mfrc522.STATUS_OK){
+			throw std::runtime_error("Select Application failed");
+		}
 	
-	MFRC522::Uid uid;
-	
-	if (mfrc522.PICC_Select(&uid) != mfrc522.STATUS_OK){
-		Serial.println("No Desfire Card");
+		if (mfrc522.Desfire_Authenticate(1, "password2", "uidandsalt") != mfrc522.STATUS_OK){
+			throw std::runtime_error("Auth failed");
+		}
+		uint32_t v;
+		if (mfrc522.Desfire_GetValue(1, v) != mfrc522.STATUS_OK){
+			throw std::runtime_error("GetValue failed");
+		}
+		Serial.println("Value:");
+		Serial.println(v);
+		if (mfrc522.Desfire_Debit(1, 1) != mfrc522.STATUS_OK){
+			throw std::runtime_error("Debit failed");
+		}
+		if (mfrc522.Desfire_CommitTransaction() != mfrc522.STATUS_OK){
+			throw std::runtime_error("Commit Transaction failed");
+		}
+		if (mfrc522.Desfire_GetValue(1, v) != mfrc522.STATUS_OK){
+			throw std::runtime_error("GetValue failed");
+		}
+		Serial.println("Value:");
+		Serial.println(v);
+
+		Serial.println(uid.size);
+		Serial.println(uid.uidByte[0]);
+		Serial.println(uid.uidByte[1]);
+		Serial.println(uid.uidByte[2]);
+		Serial.println(uid.uidByte[3]);
+		Serial.println(uid.uidByte[4]);
+		Serial.println(uid.uidByte[5]);
+		Serial.println(uid.uidByte[6]);
+		Serial.println(uid.sak);
 	}
-	Serial.println("Select Application 0x000005");
-	if (mfrc522.Desfire_SelectApplication(0x000005) != mfrc522.STATUS_OK){
-		Serial.println("Select Application failed");
+	catch(std::exception &e){
+		Serial.println("Error:");
+		Serial.println(e.what());
 	}
-	Serial.println(uid.size);
-	Serial.println(uid.uidByte[0]);
-	Serial.println(uid.uidByte[1]);
-	Serial.println(uid.uidByte[2]);
-	Serial.println(uid.uidByte[3]);
-	Serial.println(uid.uidByte[4]);
-	Serial.println(uid.uidByte[5]);
-	Serial.println(uid.uidByte[6]);
-	Serial.println(uid.sak);
-	//mfrc522.PICC_ReadCardSerial();
-	//mfrc522.PICC_DumpToSerial(&(mfrc522.uid));
-	
-	/*mfrc522.PCD_WriteRegister(mfrc522.CommandReg, mfrc522.PCD_SoftReset);
-	for(int hh = 0; hh<10; hh++){
-	mfrc522.PCD_WriteRegister(mfrc522.BitFramingReg, 7);
-	usleep(5000);
-	mfrc522.PCD_SetRegisterBitMask(mfrc522.BitFramingReg, 0x80);
-	}*/
-	
 	mfrc522.PCD_AntennaOff();
 
   Serial.println("RFID Test finished");

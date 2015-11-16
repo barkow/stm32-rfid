@@ -1,5 +1,5 @@
-#include <MFRC522Desfire.h>
-#include <Arduino.h>
+#include "MFRC522Desfire.h"
+#include "Arduino.h"
 #include <unistd.h>
 
 #define RC522_CS 0
@@ -55,9 +55,9 @@ sleep(2);
 
 int main( int argc, const char* argv[] )
 {
-  Serial.println("RFID Test");
+	Serial.println("RFID Test");
 	SPI.open(1,0);
-  MFRC522Desfire mfrc522(RC522_CS, RC522_RESET);
+	MFRC522Desfire mfrc522(RC522_CS, RC522_RESET);
 
 	mfrc522.PCD_Init();
   /*bool hasFailed = !mfrc522.PCD_PerformSelfTest();
@@ -74,12 +74,12 @@ int main( int argc, const char* argv[] )
 
   //byte v = mfrc522.PCD_ReadRegister(mfrc522.VersionReg);
   //Serial.println(v);
-  mfrc522.PCD_WriteRegister(mfrc522.GsNReg, 0xff);
-  mfrc522.PCD_WriteRegister(mfrc522.CWGsPReg, 0x3f);
-  mfrc522.PCD_SetAntennaGain(0xff);
+	mfrc522.PCD_WriteRegister(mfrc522.GsNReg, 0xff);
+	mfrc522.PCD_WriteRegister(mfrc522.CWGsPReg, 0x3f);
+	mfrc522.PCD_SetAntennaGain(0xff);
 
 	int timeout = 3000;
-  while (!mfrc522.PICC_IsNewCardPresent() && timeout > 0){timeout--;};
+	while (!mfrc522.PICC_IsNewCardPresent() && timeout > 0){timeout--;};
 	if (timeout <= 0){
 		Serial.println("Timeout");
 	}

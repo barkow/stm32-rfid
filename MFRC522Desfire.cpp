@@ -4,12 +4,13 @@ byte MFRC522Desfire::PCD_Decrypt(DesfireAesKey key, byte *encryptedData, byte en
     return STATUS_OK;
 }
 
-byte MFRC522Desfire::PCD_Encrypt(DesfireAesKey key, byte *decryptedData, byte *decryptedDataLen, byte *initVector, byte *encryptedData, byte encryptedDataLen){
+byte MFRC522Desfire::PCD_Encrypt(DesfireAesKey key, byte *decryptedData, byte decryptedDataLen, byte *initVector, byte *encryptedData, byte encryptedDataLen){
+	return STATUS_OK;
 }
 
 byte MFRC522Desfire::PCD_ShiftLeft(byte *data, byte dataLen){
     for (int n = 0; n < dataLen - 1; n++) {
-        data[n] = ((data[n] << 1) | (data[n+1] >> 7)&0x01);
+        data[n] = ((data[n] << 1) | ((data[n+1] >> 7)&0x01));
     }
     data[dataLen - 1] <<= 1;
     return STATUS_OK;
@@ -150,16 +151,16 @@ byte MFRC522Desfire::Desfire_Authenticate(byte keyNo, DesfireAesKey key){
 	if (status != STATUS_OK){
 		return status;
 	}
-	if ((answerBufLen != AES_KEY_LENGTH + 1) || (answerBuf[0] != DesfireStatusCode.DESFIRE_ADDITIONAL_FRAME)){
+	if ((answerBufLen != AES_KEY_LENGTH + 1) || (answerBuf[0] != DESFIRE_ADDITIONAL_FRAME)){
         return STATUS_ERROR;
 	}
     //RandB entschlüsseln
     byte randB[AES_KEY_LENGTH];
-    PCD_Decrypt(key, &answerBuf[1], AES_KEY_LENGTH, byte *initVector, randB, AES_KEY_LENGTH);
+    PCD_Decrypt(key, &answerBuf[1], AES_KEY_LENGTH, initVector, randB, AES_KEY_LENGTH);
     //RandB rotieren
     byte randB_rot[AES_KEY_LENGTH];
     for(int i = 0; i < AES_KEY_LENGTH; i++){
-        randB_rot[i] = randB[(i+1)%AES_KEY_LENGTH]
+        randB_rot[i] = randB[(i+1)%AES_KEY_LENGTH];
     }
     //RandA zufällig bestimmten
     byte randA[AES_KEY_LENGTH];
@@ -177,7 +178,7 @@ byte MFRC522Desfire::Desfire_Authenticate(byte keyNo, DesfireAesKey key){
     if (status != STATUS_OK){
 		return status;
 	}
-	if ((answerBufLen != AES_KEY_LENGTH + 1) || (answerBuf[0] != DesfireStatusCode.DESFIRE_OPERATION_OK)){
+	if ((answerBufLen != AES_KEY_LENGTH + 1) || (answerBuf[0] != DESFIRE_OPERATION_OK)){
         return STATUS_ERROR;
 	}
     //Prüfen, ob Antwort verschlüsselt RandA_rot ist

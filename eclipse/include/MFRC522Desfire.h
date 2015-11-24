@@ -16,6 +16,7 @@ class MFRC522Desfire : public MFRC522 {
         } DesfireAesKey;
 
 		MFRC522Desfire(byte chipSelectPin, byte resetPowerDownPin) : MFRC522(chipSelectPin, resetPowerDownPin){};
+		MFRC522Desfire() : MFRC522(0, 1){};
 		byte PICC_Select(Uid *uid);
 		byte Desfire_SelectApplication(uint32_t applicationId);
 		byte Desfire_Authenticate(byte keyNo, DesfireAesKey key);

@@ -13,70 +13,29 @@
 #include <unistd.h>
 #include <string.h>
 
-#define MAX_PATH_LEN  40
-#define SPI_DEVICE_PATH_BASE "/dev/spidev"
-
 SPIClass::SPIClass()
 {
-	active = false;
-	mode = 0;
-	bpw = 0;
-	speed = 0;
-	fd = -1;
-	lsb_first = false;
-}
-
-int SPIClass::open(int bus, int channel)
-{
-	return 1;
-}
-
-int SPIClass::close()
-{
-		return 1;
-}
-
-int SPIClass::setClockPolarity(uint8_t pol)
-{
-	return 1;
-}
-
-int SPIClass::setClockPhase(uint8_t phase)
-{
-	return 1;
-}
-
-int SPIClass::setLSBFirst(bool lsb_first)
-{
-	return 1;
-}
-
-int SPIClass::setBitsPerWord(int bits)
-{
-	return 1;
-}
-
-int SPIClass::setSpeed(uint32_t speed)
-{
-	return 1;
-}
-
-int SPIClass::write(uint8_t wbuf[], int len)
-{
-	return 1;
-}
-
-int SPIClass::read(uint8_t rbuf[], int len)
-{
-	return 1;
+	hspi.Instance = SPI1;
+	hspi.Init.Mode = SPI_MODE_MASTER;
+	hspi.Init.Direction = SPI_DIRECTION_2LINES;
+	hspi.Init.DataSize = SPI_DATASIZE_8BIT;
+	hspi.Init.CLKPolarity = SPI_POLARITY_LOW;
+	hspi.Init.CLKPhase = SPI_PHASE_1EDGE;
+	hspi.Init.NSS = SPI_NSS_HARD_OUTPUT;
+	hspi.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_256;
+	hspi.Init.FirstBit = SPI_FIRSTBIT_MSB;
+	hspi.Init.TIMode = SPI_TIMODE_DISABLED;
+	hspi.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLED;
+	hspi.Init.CRCPolynomial = 10;
+	HAL_SPI_Init(&hspi);
 }
 
 int SPIClass::xfer1(uint8_t wbuf[], uint8_t rbuf[], int len)
 {
-	return 1;
-}
-
-SPIClass::~SPIClass()
-{
-	close();
+	if (HAL_SPI_TransmitReceive(&hspi,wbuf, rbuf, len, 100) == HAL_OK){
+		return 1;
+	}
+	else {
+		return -1;
+	}
 }

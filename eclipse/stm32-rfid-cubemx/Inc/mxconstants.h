@@ -38,6 +38,14 @@
 
 /* Private define ------------------------------------------------------------*/
 
+#define RFID_CS_Pin GPIO_PIN_4
+#define RFID_CS_GPIO_Port GPIOA
+#define RFID_SCK_Pin GPIO_PIN_5
+#define RFID_SCK_GPIO_Port GPIOA
+#define RFID_MISO_Pin GPIO_PIN_6
+#define RFID_MISO_GPIO_Port GPIOA
+#define RFID_MOSI_Pin GPIO_PIN_7
+#define RFID_MOSI_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

@@ -94,7 +94,7 @@ int main(void)
 
   mfrc522.PCD_WriteRegister(mfrc522.GsNReg, 0xff);
   mfrc522.PCD_WriteRegister(mfrc522.CWGsPReg, 0x3f);
-  mfrc522.PCD_SetAntennaGain(0xff);
+  mfrc522.PCD_SetAntennaGain(mfrc522.RxGain_max);
 
   /* USER CODE END 2 */
 

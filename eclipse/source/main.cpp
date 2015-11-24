@@ -32,6 +32,7 @@
   */
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f1xx_hal.h"
+#include "usb_device.h"
 
 /* USER CODE BEGIN Includes */
 #include "MFRC522Desfire.h"
@@ -85,6 +86,7 @@ int main(void)
   MX_CRC_Init();
   //MX_SPI1_Init();
   MX_SPI2_Init();
+  MX_USB_DEVICE_Init();
 
   /* USER CODE BEGIN 2 */
   MFRC522Desfire mfrc522;

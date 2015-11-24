@@ -94,9 +94,6 @@ int main(void)
   while (1)
   {
   /* USER CODE END WHILE */
-	  uint8_t inData[3];
-	  uint8_t outData[3];
-	  HAL_SPI_TransmitReceive(SPI2, outData, inData, 3, 100);
 
   /* USER CODE BEGIN 3 */
 

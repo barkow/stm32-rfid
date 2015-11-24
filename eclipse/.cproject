@@ -17,7 +17,7 @@
 				<configuration artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe" cleanCommand="${cross_rm} -rf" description="" id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938" name="Debug" parent="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug">
 					<folderInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938." name="/" resourcePath="">
 						<toolChain id="ilg.gnuarmeclipse.managedbuild.cross.toolchain.elf.debug.448911459" name="Cross ARM GCC" superClass="ilg.gnuarmeclipse.managedbuild.cross.toolchain.elf.debug">
-							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.level.400449537" name="Optimization Level" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.level" value="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.level.none" valueType="enumerated"/>
+							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.level.400449537" name="Optimization Level" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.level" value="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.level.debug" valueType="enumerated"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.messagelength.82769154" name="Message length (-fmessage-length=0)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.messagelength" value="true" valueType="boolean"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.signedchar.454010387" name="'char' is signed (-fsigned-char)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.signedchar" value="true" valueType="boolean"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.functionsections.608338238" name="Function sections (-ffunction-sections)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.functionsections" value="true" valueType="boolean"/>
@@ -48,6 +48,9 @@
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Drivers/CMSIS/Include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Drivers/STM32F1xx_HAL_Driver/Inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/rfid&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/crypto&quot;"/>
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.defs.867111424" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.defs" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="USE_HAL_DRIVER"/>
@@ -61,6 +64,9 @@
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Drivers/CMSIS/Include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Drivers/STM32F1xx_HAL_Driver/Inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/rfid&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/crypto&quot;"/>
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.defs.1903488138" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.defs" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="USE_HAL_DRIVER"/>
@@ -74,11 +80,18 @@
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Drivers/CMSIS/Include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Drivers/STM32F1xx_HAL_Driver/Inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/rfid&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/crypto&quot;"/>
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.defs.572211066" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.defs" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="USE_HAL_DRIVER"/>
 									<listOptionValue builtIn="false" value="STM32F103xB"/>
 								</option>
+								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.noexceptions.314226913" name="Do not use exceptions (-fno-exceptions)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.noexceptions" useByScannerDiscovery="true" value="true" valueType="boolean"/>
+								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.nortti.1181509551" name="Do not use RTTI (-fno-rtti)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.nortti" useByScannerDiscovery="true" value="true" valueType="boolean"/>
+								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.nousecxaatexit.284166972" name="Do not use _cxa_atexit() (-fno-use-cxa-atexit)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.nousecxaatexit" useByScannerDiscovery="true" value="true" valueType="boolean"/>
+								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.nothreadsafestatics.1433661604" name="Do not use thread-safe statics (-fno-threadsafe-statics)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.nothreadsafestatics" useByScannerDiscovery="true" value="true" valueType="boolean"/>
 								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.input.2049158279" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.input"/>
 							</tool>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.linker.758692555" name="Cross ARM C Linker" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.linker">
@@ -87,8 +100,11 @@
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.linker.1354146591" name="Cross ARM C++ Linker" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.linker">
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.gcsections.1625002092" name="Remove unused sections (-Xlinker --gc-sections)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.gcsections" value="true" valueType="boolean"/>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.scriptfile.1988865628" name="Script files (-T)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.scriptfile" valueType="stringList">
-									<listOptionValue builtIn="false" value="&quot;/home/barkow/git/stm32-rfid/eclipse/stm32-rfid-cubemx/TrueSTUDIO/testcmx Configuration/STM32F103C8_FLASH.ld&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;/home/barkow/git/stm32-rfid/eclipse/stm32-rfid-cubemx/TrueSTUDIO/stm32-rfid-cubemx Configuration/STM32F103C8Tx_FLASH.ld&quot;"/>
 								</option>
+								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.nostart.178324932" name="Do not use standard start files (-nostartfiles)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.nostart" value="false" valueType="boolean"/>
+								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.other.1487325899" name="Other linker flags" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.other" value="" valueType="string"/>
+								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.usenewlibnano.908266383" name="Use newlib-nano (--specs=nano.specs)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.usenewlibnano" value="true" valueType="boolean"/>
 								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.linker.input.1761796034" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -121,13 +137,8 @@
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.729674715" name="stm32f100xe.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100xe.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.1511246301" name="stm32f103xg.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xg.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.938322248" name="stm32f103xb.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h" toolsToInvoke=""/>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.279470023" name="stm32f1xx_hal_msp_template.c" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_msp_template.c" toolsToInvoke="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.1995304806.930948313">
-						<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.1995304806.930948313" name="Cross ARM C Compiler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.1995304806">
-							<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input.1245046071" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input"/>
-						</tool>
-					</fileInfo>
 					<sourceEntries>
-						<entry excluding="stm32-rfid-cubemx/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_msp_template.c|stm32-rfid-cubemx/Drivers/CMSIS/RTOS|stm32-rfid-cubemx/Drivers/CMSIS/DSP_Lib|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xg.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f107xc.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f105xc.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f102xb.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f102x6.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xg.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xe.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100xe.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xb.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101x6.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100xb.h" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="rfid/examples|stm32-rfid-cubemx/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_msp_template.c|stm32-rfid-cubemx/Drivers/CMSIS/RTOS|stm32-rfid-cubemx/Drivers/CMSIS/DSP_Lib|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xg.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f107xc.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f105xc.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f102xb.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f102x6.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xg.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xe.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100xe.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xb.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101x6.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100xb.h" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -194,6 +205,9 @@
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Drivers/CMSIS/Include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Drivers/STM32F1xx_HAL_Driver/Inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/rfid&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/crypto&quot;"/>
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.defs.1076673051" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.defs" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="USE_HAL_DRIVER"/>
@@ -207,6 +221,9 @@
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Drivers/CMSIS/Include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Drivers/STM32F1xx_HAL_Driver/Inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/rfid&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/crypto&quot;"/>
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.defs.44503875" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.defs" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="USE_HAL_DRIVER"/>
@@ -220,6 +237,9 @@
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Drivers/CMSIS/Include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Drivers/STM32F1xx_HAL_Driver/Inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/rfid&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/crypto&quot;"/>
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.defs.1423798099" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.defs" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="USE_HAL_DRIVER"/>
@@ -264,11 +284,8 @@
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1437167397" name="stm32f100xe.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100xe.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1254885025" name="stm32f103xg.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xg.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1136748008" name="stm32f103xb.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h" toolsToInvoke=""/>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.306854822" name="stm32f1xx_hal_msp_template.c" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_msp_template.c" toolsToInvoke="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.1124273409.207695425">
-						<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.1124273409.207695425" name="Cross ARM C Compiler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.1124273409"/>
-					</fileInfo>
 					<sourceEntries>
-						<entry excluding="stm32-rfid-cubemx/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_msp_template.c|stm32-rfid-cubemx/Drivers/CMSIS/RTOS|stm32-rfid-cubemx/Drivers/CMSIS/DSP_Lib|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xg.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f107xc.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f105xc.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f102xb.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f102x6.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xg.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xe.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100xe.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xb.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101x6.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100xb.h" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="rfid/examples|stm32-rfid-cubemx/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_msp_template.c|stm32-rfid-cubemx/Drivers/CMSIS/RTOS|stm32-rfid-cubemx/Drivers/CMSIS/DSP_Lib|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xg.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f107xc.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f105xc.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f102xb.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f102x6.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xg.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xe.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100xe.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xb.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101x6.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100xb.h" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

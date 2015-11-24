@@ -1,20 +1,15 @@
 #include "MFRC522Desfire.h"
-#include "crypto/sha256.h"
-#include "crypto/hmac.h"
-#include "crypto/crc32.h"
+#include "sha256.h"
+#include "hmac.h"
+#include "crc32.h"
 #include <vector>
 
 extern "C" {
-#include "crypto/aes.h"
+#include "aes.h"
 }
 
 void debugOutByteArray(byte *data, byte len, std::string text){
 #ifdef DEBUG
-	std::cout << text;
-	for(int i = 0; i < len; i++){
-		std::cout << "0x" << std::hex << (int) data[i] << " ";
-	}
-	std::cout << std::endl;
 #endif
 }
 
@@ -180,7 +175,6 @@ byte MFRC522Desfire::PICC_SendApduCommand(byte command, byte *data, byte dataLen
 	status = MFRC522::PCD_CalculateCRC(commandBuf, 7 + dataLen + (dataLen>0?1:0), &commandBuf[7 + dataLen + (dataLen>0?1:0)]);
 	if (status != STATUS_OK){
 		delete[] commandBuf;
-		std::cout << "CRC Calc failed" << std::endl;
 		return status;
 	}
 
@@ -189,7 +183,6 @@ byte MFRC522Desfire::PICC_SendApduCommand(byte command, byte *data, byte dataLen
 	status = MFRC522::PCD_TransceiveData(commandBuf, 7 + dataLen + (dataLen>0?1:0)+ 2, responseBuf, &responseBufLen);
 	delete[] commandBuf;
 	if (status != STATUS_OK){
-		std::cout << "Transceive failed with " << (int) status << std::endl;
 		return status;
 	}
 

@@ -3,7 +3,6 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <iostream>
 #include <spiclass.h>
 
 typedef unsigned char uint8_t;
@@ -36,11 +35,11 @@ void delay(unsigned long);
 
 class SerialClass {
   public:
-    void print(const char* s){std::cout << s;};
-    void print(int i, int f = DEC){std::cout << i;};
-    void println(const char* s){std::cout << s << std::endl;};
-    void println(int i){std::cout << i << std::endl;};
-    void println(void){std::cout << std::endl;};
+    void print(const char* s){};
+    void print(int i, int f = DEC){};
+    void println(const char* s){};
+    void println(int i){};
+    void println(void){};
 };
 
 extern SerialClass Serial;

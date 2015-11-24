@@ -1,4 +1,5 @@
 #include <MFRC522.h>
+#include <string>
 
 #define AES_KEY_LENGTH 16
 

@@ -6,7 +6,6 @@
  */
 
 #include <stdint.h>
-#include <linux/spi/spidev.h>
 
 #ifndef SPI_H_
 #define SPI_H_

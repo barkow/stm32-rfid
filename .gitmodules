@@ -1,3 +1,6 @@
 [submodule "rfid"]
 	path = rfid
 	url = https://github.com/barkow/rfid.git
+[submodule "eclipse/rfid"]
+	path = eclipse/rfid
+	url = https://github.com/barkow/rfid.git

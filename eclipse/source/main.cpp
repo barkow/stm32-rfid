@@ -106,6 +106,7 @@ int main(void)
 
   /* USER CODE BEGIN 3 */
 	  try{
+		  while(1){}
 		  while (!mfrc522.PICC_IsNewCardPresent()){}
 		  MFRC522::Uid uid;
 		  if (mfrc522.PICC_Select(&uid) != mfrc522.STATUS_OK){

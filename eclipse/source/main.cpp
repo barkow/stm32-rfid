@@ -38,6 +38,7 @@
 #include "MFRC522Desfire.h"
 #include <stdexcept>
 #include "secrets.h"
+#include "usbd_cdc_if.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -45,6 +46,8 @@ CRC_HandleTypeDef hcrc;
 
 //SPI_HandleTypeDef hspi1;
 SPI_HandleTypeDef hspi2;
+
+UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
@@ -57,6 +60,7 @@ static void MX_GPIO_Init(void);
 static void MX_CRC_Init(void);
 //static void MX_SPI1_Init(void);
 static void MX_SPI2_Init(void);
+static void MX_USART1_UART_Init(void);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
@@ -85,18 +89,26 @@ int main(void)
   MX_GPIO_Init();
   MX_CRC_Init();
   //MX_SPI1_Init();
+  //SPI1 wird in der Klasse MFRC522Desfire initialisiert
   MX_SPI2_Init();
+  MX_USART1_UART_Init();
   MX_USB_DEVICE_Init();
 
   /* USER CODE BEGIN 2 */
+  while(1){
+  	  uint8_t data[] = "Loop";
+  	  HAL_UART_Transmit(&huart1, data, 4, 100);
+  	  HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
+  	  CDC_Transmit_FS(data, 4);
+  	  HAL_Delay(100);
+  }
+
   MFRC522Desfire mfrc522;
   mfrc522.PCD_Init();
 
   mfrc522.PCD_WriteRegister(mfrc522.GsNReg, 0xff);
   mfrc522.PCD_WriteRegister(mfrc522.CWGsPReg, 0x3f);
   mfrc522.PCD_SetAntennaGain(mfrc522.RxGain_max);
-
-  HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET);
 
   /* USER CODE END 2 */
 
@@ -108,7 +120,6 @@ int main(void)
 
   /* USER CODE BEGIN 3 */
 	  try{
-		  while(1){}
 		  HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
 		  while (!mfrc522.PICC_IsNewCardPresent()){}
 		  MFRC522::Uid uid;
@@ -222,6 +233,23 @@ void MX_SPI2_Init(void)
   HAL_SPI_Init(&hspi2);
 
 }
+
+/* USART1 init function */
+void MX_USART1_UART_Init(void)
+{
+
+  huart1.Instance = USART1;
+  huart1.Init.BaudRate = 115200;
+  huart1.Init.WordLength = UART_WORDLENGTH_8B;
+  huart1.Init.StopBits = UART_STOPBITS_1;
+  huart1.Init.Parity = UART_PARITY_NONE;
+  huart1.Init.Mode = UART_MODE_TX_RX;
+  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+  HAL_UART_Init(&huart1);
+
+}
+
 
 /** Configure pins as
         * Analog

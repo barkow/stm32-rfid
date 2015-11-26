@@ -1,0 +1,1 @@
+../stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h

@@ -6,7 +6,6 @@
  */
 
 #include <stdint.h>
-#include "stm32f1xx_hal.h"
 
 #ifndef SPI_H_
 #define SPI_H_
@@ -21,9 +20,6 @@
 
 class SPIClass
 {
-	private:
-		SPI_HandleTypeDef hspi;
-
 	public:
 
 		/**

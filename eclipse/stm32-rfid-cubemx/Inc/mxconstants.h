@@ -50,6 +50,16 @@
 #define RFID_MISO_GPIO_Port GPIOA
 #define RFID_MOSI_Pin GPIO_PIN_7
 #define RFID_MOSI_GPIO_Port GPIOA
+#define LCD_CS_Pin GPIO_PIN_12
+#define LCD_CS_GPIO_Port GPIOB
+#define LCD_SCK_Pin GPIO_PIN_13
+#define LCD_SCK_GPIO_Port GPIOB
+#define LCD_DCMODE_Pin GPIO_PIN_14
+#define LCD_DCMODE_GPIO_Port GPIOB
+#define LCD_MOSI_Pin GPIO_PIN_15
+#define LCD_MOSI_GPIO_Port GPIOB
+#define LCD_RESET_Pin GPIO_PIN_8
+#define LCD_RESET_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

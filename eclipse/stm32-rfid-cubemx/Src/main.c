@@ -233,11 +233,17 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_LOW;
   HAL_GPIO_Init(LED1_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : RFID_RESET_Pin */
-  GPIO_InitStruct.Pin = RFID_RESET_Pin;
+  /*Configure GPIO pins : RFID_RESET_Pin LCD_RESET_Pin */
+  GPIO_InitStruct.Pin = RFID_RESET_Pin|LCD_RESET_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Speed = GPIO_SPEED_LOW;
-  HAL_GPIO_Init(RFID_RESET_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : LCD_DCMODE_Pin */
+  GPIO_InitStruct.Pin = LCD_DCMODE_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_LOW;
+  HAL_GPIO_Init(LCD_DCMODE_GPIO_Port, &GPIO_InitStruct);
 
 }
 

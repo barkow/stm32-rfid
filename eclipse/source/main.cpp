@@ -33,7 +33,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f1xx_hal.h"
 #include "crc.h"
-#include "spi.h"
 #include "usart.h"
 #include "usb_device.h"
 #include "gpio.h"
@@ -43,6 +42,7 @@
 #include <stdexcept>
 #include "secrets.h"
 #include "usbd_cdc_if.h"
+#include "display.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -83,9 +83,13 @@ int main(void)
   MX_CRC_Init();
   //MX_SPI1_Init();
   //SPI1 wird in der Klasse MFRC522Desfire initialisiert
-  MX_SPI2_Init();
+  //MX_SPI2_Init();
+  //SPI2 wird in der Klasse display initialisiert
   MX_USART1_UART_Init();
   MX_USB_DEVICE_Init();
+
+  display disp;
+  disp.command(PCD8544_DISPLAYCONTROL | PCD8544_DISPLAYINVERSE);
 
   /* USER CODE BEGIN 2 */
   while(1){

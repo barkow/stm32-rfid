@@ -38,6 +38,10 @@
 
 /* Private define ------------------------------------------------------------*/
 
+#define LED1_Pin GPIO_PIN_13
+#define LED1_GPIO_Port GPIOC
+#define RFID_RESET_Pin GPIO_PIN_3
+#define RFID_RESET_GPIO_Port GPIOA
 #define RFID_CS_Pin GPIO_PIN_4
 #define RFID_CS_GPIO_Port GPIOA
 #define RFID_SCK_Pin GPIO_PIN_5

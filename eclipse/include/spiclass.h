@@ -32,7 +32,7 @@ class SPIClass
 		 * @param mode
 		 * @return
 		 */
-		void setDataMode(uint8_t mode) {};
+		void setDataMode(uint8_t mode);
 
 		/**
 		 * Function sets order of bits in transmitted data.

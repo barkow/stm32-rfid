@@ -36,6 +36,8 @@
 #include "usart.h"
 #include "usb_device.h"
 #include "gpio.h"
+//Spi.h wird nicht benötigt
+#include "spi.h"
 
 /* USER CODE BEGIN Includes */
 #include "MFRC522Desfire.h"
@@ -65,7 +67,6 @@ void SystemClock_Config(void);
 
 int main(void)
 {
-
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -81,31 +82,36 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_CRC_Init();
-  //MX_SPI1_Init();
+  MX_SPI1_Init();
   //SPI1 wird in der Klasse MFRC522Desfire initialisiert
   //MX_SPI2_Init();
   //SPI2 wird in der Klasse display initialisiert
   MX_USART1_UART_Init();
   MX_USB_DEVICE_Init();
 
-  display disp;
-  disp.command(PCD8544_DISPLAYCONTROL | PCD8544_DISPLAYINVERSE);
+  //display disp;
+  //disp.command(PCD8544_DISPLAYCONTROL | PCD8544_DISPLAYINVERSE);
 
   /* USER CODE BEGIN 2 */
-  while(1){
-  	  uint8_t data[] = "Loop";
-  	  HAL_UART_Transmit(&huart1, data, 4, 100);
-  	  HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
-  	  CDC_Transmit_FS(data, 4);
-  	  HAL_Delay(100);
-  }
 
   MFRC522Desfire mfrc522;
   mfrc522.PCD_Init();
+  volatile uint8_t t = mfrc522.PCD_ReadRegister(mfrc522.VersionReg);
+  /*while(1){
+  	  uint8_t data[] = "Loop";
+  	  HAL_UART_Transmit(&huart1, data, 4, 100);
+  	  HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
+  	  //CDC_Transmit_FS(data, 4);
+  	  HAL_Delay(100);
+  }*/
+
+
 
   mfrc522.PCD_WriteRegister(mfrc522.GsNReg, 0xff);
   mfrc522.PCD_WriteRegister(mfrc522.CWGsPReg, 0x3f);
-  mfrc522.PCD_SetAntennaGain(mfrc522.RxGain_max);
+  //mfrc522.PCD_SetAntennaGain(mfrc522.RxGain_max);
+  mfrc522.PCD_SetAntennaGain(0xff);
+
 
   /* USER CODE END 2 */
 
@@ -116,30 +122,27 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-	  try{
-		  HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
-		  while (!mfrc522.PICC_IsNewCardPresent()){}
-		  MFRC522::Uid uid;
-		  if (mfrc522.PICC_Select(&uid) != mfrc522.STATUS_OK){
-			  throw std::runtime_error("No Desfire Card");
-		  }
-		  if (mfrc522.Desfire_SelectApplication(0x000005) != mfrc522.STATUS_OK){
-			  throw std::runtime_error("Select Application failed");
-		  }
-
-		  if (mfrc522.Desfire_Authenticate(1, IKAFKAOPENDOSCALAPASSWORD) != mfrc522.STATUS_OK){
-			  throw std::runtime_error("Auth failed");
-		  }
-		  byte data[32];
-		  byte dataLen = 32;
-		  if (mfrc522.Desfire_ReadData(5, 0, 32, data, &dataLen) != mfrc522.STATUS_OK){
-			  throw std::runtime_error("Readdata failed");
-		  }
+	  HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET);
+	  while (!mfrc522.PICC_IsNewCardPresent()){}
+	  HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
+	  MFRC522::Uid uid;
+	  if (mfrc522.PICC_Select(&uid) != mfrc522.STATUS_OK){
+		  continue;
 	  }
-	  catch(std::exception &e){
-
+	  //CDC_Transmit_FS(uid.uidByte, 7);
+	  if (mfrc522.Desfire_SelectApplication(0x000005) != mfrc522.STATUS_OK){
+	  	continue;
 	  }
 
+	  if (mfrc522.Desfire_Authenticate(1, IKAFKAOPENDOSCALAPASSWORD) != mfrc522.STATUS_OK){
+		  continue;
+	  }
+	  byte data[32];
+	  byte dataLen = 32;
+	  if (mfrc522.Desfire_ReadData(5, 0, 32, data, &dataLen) != mfrc522.STATUS_OK){
+		  continue;
+	  }
+	  //CDC_Transmit_FS(data, 32);
   }
   /* USER CODE END 3 */
 

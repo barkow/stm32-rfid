@@ -24,15 +24,16 @@ _sbrk(int incr)
   //TODO: Richtige Werte im Linkerscript generieren
   //extern char _Heap_Begin; // Defined by the linker.
   //extern char _Heap_Limit; // Defined by the linker.
-  char _Heap_Begin = 0;
-  char _Heap_Limit = 0;
+  extern uint8_t _end;
+  //char _Heap_Begin = 0;
+  //char _Heap_Limit = 0;
 
   static char* current_heap_end;
   char* current_block_address;
 
   if (current_heap_end == 0)
     {
-      current_heap_end = &_Heap_Begin;
+      current_heap_end = &_end;
     }
 
   current_block_address = current_heap_end;
@@ -42,7 +43,7 @@ _sbrk(int incr)
   // word boundary, hence make sure we always add a multiple of
   // 4 to it.
   incr = (incr + 3) & (~3); // align value to 4
-  if (current_heap_end + incr > &_Heap_Limit)
+  if (current_heap_end + incr > (&_end + 0x400))
     {
       // Some of the libstdc++-v3 tests rely upon detecting
       // out of memory errors, so do not abort here.

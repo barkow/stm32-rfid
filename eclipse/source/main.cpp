@@ -89,10 +89,12 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USB_DEVICE_Init();
 
-  //display disp;
-  //disp.command(PCD8544_DISPLAYCONTROL | PCD8544_DISPLAYINVERSE);
-
   /* USER CODE BEGIN 2 */
+  display disp;
+  disp.command(PCD8544_DISPLAYCONTROL | PCD8544_DISPLAYINVERSE);
+  disp.command(PCD8544_DISPLAYCONTROL | PCD8544_DISPLAYNORMAL);
+  uint8_t dispData[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};//{0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
+  disp.data(dispData, 8);
 
   MFRC522Desfire mfrc522;
   mfrc522.PCD_Init();
@@ -104,8 +106,6 @@ int main(void)
   	  //CDC_Transmit_FS(data, 4);
   	  HAL_Delay(100);
   }*/
-
-
 
   mfrc522.PCD_WriteRegister(mfrc522.GsNReg, 0xff);
   mfrc522.PCD_WriteRegister(mfrc522.CWGsPReg, 0x3f);
@@ -129,7 +129,7 @@ int main(void)
 	  if (mfrc522.PICC_Select(&uid) != mfrc522.STATUS_OK){
 		  continue;
 	  }
-	  //CDC_Transmit_FS(uid.uidByte, 7);
+	  CDC_Transmit_FS(uid.uidByte, 7);
 	  if (mfrc522.Desfire_SelectApplication(0x000005) != mfrc522.STATUS_OK){
 	  	continue;
 	  }
@@ -142,7 +142,7 @@ int main(void)
 	  if (mfrc522.Desfire_ReadData(5, 0, 32, data, &dataLen) != mfrc522.STATUS_OK){
 		  continue;
 	  }
-	  //CDC_Transmit_FS(data, 32);
+	  CDC_Transmit_FS(data, 32);
   }
   /* USER CODE END 3 */
 

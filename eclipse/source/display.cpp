@@ -12,6 +12,10 @@ display::display(){
 	MX_SPI2_Init();
 	//GPIO muss in main initialisiert werden
 
+	HAL_GPIO_WritePin(LCD_CS_GPIO_Port, LCD_CS_Pin, GPIO_PIN_SET);
+	uint8_t dummy = 0;
+	HAL_SPI_Transmit(&hspi2, &dummy, 1, 100);
+
 	//Reset display
 	HAL_GPIO_WritePin(LCD_RESET_GPIO_Port, LCD_RESET_Pin, GPIO_PIN_RESET);
 	HAL_Delay(100);
@@ -25,7 +29,7 @@ display::display(){
 	command(PCD8544_SETBIAS | bias);
 
 	//Set VOP
-	uint8_t contrast = 0x7f;
+	uint8_t contrast = 0x0f;//0x7f;
 	command( PCD8544_SETVOP | contrast);
 
 	// normal mode
@@ -38,11 +42,15 @@ display::display(){
 void display::data(uint8_t* dat, uint8_t len){
 	//D/C Pin auf HIGH --> data
 	HAL_GPIO_WritePin(LCD_DCMODE_GPIO_Port, LCD_DCMODE_Pin, GPIO_PIN_SET);
-	HAL_SPI_Transmit(&hspi1, dat, len, 100);
+	HAL_GPIO_WritePin(LCD_CS_GPIO_Port, LCD_CS_Pin, GPIO_PIN_RESET);
+	HAL_SPI_Transmit(&hspi2, dat, len, 100);
+	HAL_GPIO_WritePin(LCD_CS_GPIO_Port, LCD_CS_Pin, GPIO_PIN_SET);
 }
 
 void display::command(uint8_t cmd){
 	//D/C Pin auf LOW --> Command
 	HAL_GPIO_WritePin(LCD_DCMODE_GPIO_Port, LCD_DCMODE_Pin, GPIO_PIN_RESET);
-	HAL_SPI_Transmit(&hspi1, & cmd, 1, 100);
+	HAL_GPIO_WritePin(LCD_CS_GPIO_Port, LCD_CS_Pin, GPIO_PIN_RESET);
+	HAL_SPI_Transmit(&hspi2, & cmd, 1, 100);
+	HAL_GPIO_WritePin(LCD_CS_GPIO_Port, LCD_CS_Pin, GPIO_PIN_SET);
 }

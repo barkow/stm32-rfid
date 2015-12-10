@@ -10,6 +10,9 @@
 
 #include <stdint.h>
 
+#define LCDWIDTH 84
+#define LCDHEIGHT 48
+
 #define PCD8544_FUNCTIONSET 		0x20
 #define PCD8544_POWERDOWN			0x04
 #define PCD8544_VERTICALADDRESSING	0x02
@@ -17,8 +20,10 @@
 
 //Commands in Basic Instruction Set
 #define PCD8544_DISPLAYCONTROL 		0x08
-#define PCD8544_DISPLAYNORMAL 		0x02
-#define PCD8544_DISPLAYINVERSE		0x03
+#define PCD8544_DISPLAYBLANK 		0x00
+#define PCD8544_DISPLAYALLON 		0x01
+#define PCD8544_DISPLAYNORMAL 		0x04
+#define PCD8544_DISPLAYINVERSE		0x05
 
 #define PCD8544_SETXADDRESS 		0x80
 
@@ -35,8 +40,9 @@
 class display {
 public:
 	display();
-	void data(uint8_t *dat, uint8_t len);
+	void data(uint8_t *dat, uint16_t len);
 	void command(uint8_t cmd);
+	void transferBuffer(uint8_t* buffer, uint16_t bufferSize);
 };
 
 

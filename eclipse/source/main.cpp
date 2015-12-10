@@ -91,10 +91,21 @@ int main(void)
 
   /* USER CODE BEGIN 2 */
   display disp;
-  disp.command(PCD8544_DISPLAYCONTROL | PCD8544_DISPLAYINVERSE);
+  disp.command(PCD8544_DISPLAYCONTROL | PCD8544_DISPLAYALLON);
+  disp.command(PCD8544_DISPLAYCONTROL | PCD8544_DISPLAYBLANK);
   disp.command(PCD8544_DISPLAYCONTROL | PCD8544_DISPLAYNORMAL);
-  uint8_t dispData[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};//{0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
-  disp.data(dispData, 8);
+  uint8_t dispData[48*84/8];
+  memset(dispData, 0, sizeof(dispData));
+  disp.transferBuffer(dispData, sizeof(dispData));
+  //dispData[0] = 0x01;
+  int i = 0;
+  while(1){
+	  memset(dispData, 0, sizeof(dispData));
+	  memset(&dispData[i*84], 0x01, 84);
+	  disp.transferBuffer(dispData, sizeof(dispData));
+	  i = (i + 1) % 6;
+	  HAL_Delay(100);
+  }
 
   MFRC522Desfire mfrc522;
   mfrc522.PCD_Init();

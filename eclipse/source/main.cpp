@@ -43,7 +43,7 @@
 #include "MFRC522Desfire.h"
 #include <stdexcept>
 #include "secrets.h"
-#include "usbd_cdc_if.h"
+#include "usbd_hid.h"
 #include "display.h"
 /* USER CODE END Includes */
 
@@ -140,7 +140,7 @@ int main(void)
 	  if (mfrc522.PICC_Select(&uid) != mfrc522.STATUS_OK){
 		  continue;
 	  }
-	  CDC_Transmit_FS(uid.uidByte, 7);
+	  //CDC_Transmit_FS(uid.uidByte, 7);
 	  if (mfrc522.Desfire_SelectApplication(0x000005) != mfrc522.STATUS_OK){
 	  	continue;
 	  }
@@ -153,7 +153,7 @@ int main(void)
 	  if (mfrc522.Desfire_ReadData(5, 0, 32, data, &dataLen) != mfrc522.STATUS_OK){
 		  continue;
 	  }
-	  CDC_Transmit_FS(data, 32);
+	  //CDC_Transmit_FS(data, 32);
   }
   /* USER CODE END 3 */
 

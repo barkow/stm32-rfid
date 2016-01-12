@@ -4,7 +4,7 @@
   * @version        : v1.0_Cube
   * @brief          : Header for usbd_conf file.
   ******************************************************************************
-  * COPYRIGHT(c) 2015 STMicroelectronics
+  * COPYRIGHT(c) 2016 STMicroelectronics
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -69,10 +69,6 @@
 #define USBD_DEBUG_LEVEL     0
 /*---------- -----------*/
 #define USBD_SELF_POWERED     0
-/*---------- -----------*/
-#define USBD_CDC_INTERVAL     1000
-/*---------- -----------*/
-#define MAX_STATIC_ALLOC_SIZE     512
 /****************************************/
 /* #define for FS and HS identification */
 #define DEVICE_FS 		0

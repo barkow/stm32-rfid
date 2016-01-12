@@ -59,6 +59,8 @@ void SystemClock_Config(void);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
+void usbKeyboardSendString(USBD_HandleTypeDef *pdev, uint8_t *dat, uint16_t len);
+void usbKeyboardSendHex(USBD_HandleTypeDef *pdev, uint8_t *dat, uint16_t len);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
@@ -90,33 +92,10 @@ int main(void)
   MX_USB_DEVICE_Init();
 
   /* USER CODE BEGIN 2 */
-  display disp;
-  disp.command(PCD8544_DISPLAYCONTROL | PCD8544_DISPLAYALLON);
-  disp.command(PCD8544_DISPLAYCONTROL | PCD8544_DISPLAYBLANK);
-  disp.command(PCD8544_DISPLAYCONTROL | PCD8544_DISPLAYNORMAL);
-  uint8_t dispData[48*84/8];
-  memset(dispData, 0, sizeof(dispData));
-  disp.transferBuffer(dispData, sizeof(dispData));
-  //dispData[0] = 0x01;
-  int i = 0;
-  while(1){
-	  memset(dispData, 0, sizeof(dispData));
-	  memset(&dispData[i*84], 0x01, 84);
-	  disp.transferBuffer(dispData, sizeof(dispData));
-	  i = (i + 1) % 6;
-	  HAL_Delay(100);
-  }
 
   MFRC522Desfire mfrc522;
   mfrc522.PCD_Init();
   volatile uint8_t t = mfrc522.PCD_ReadRegister(mfrc522.VersionReg);
-  /*while(1){
-  	  uint8_t data[] = "Loop";
-  	  HAL_UART_Transmit(&huart1, data, 4, 100);
-  	  HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
-  	  //CDC_Transmit_FS(data, 4);
-  	  HAL_Delay(100);
-  }*/
 
   mfrc522.PCD_WriteRegister(mfrc522.GsNReg, 0xff);
   mfrc522.PCD_WriteRegister(mfrc522.CWGsPReg, 0x3f);
@@ -128,6 +107,9 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  uint8_t da[] = {0x01, 0x23, 0x45, 0x67, 0x89, 0xab, 0xcd, 0xef};
+  HAL_Delay(5000);
+  usbKeyboardSendHex(&hUsbDeviceFS, da, 8);
   while (1)
   {
   /* USER CODE END WHILE */
@@ -196,7 +178,45 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void usbKeyboardSendHex(USBD_HandleTypeDef *pdev, uint8_t *dat, uint16_t len){
+	for (int i = 0; i < len; i++){
+		uint8_t high = dat[i] / 16;
+		uint8_t low = dat[i] & 0x0f;
+		uint8_t hexstr[2];
+		hexstr[0] = high <= 9 ? high + '0' : high - 10 + 'a';
+		hexstr[1] = low <= 9 ? low + '0' : low - 10 + 'a';
+		usbKeyboardSendString(pdev, hexstr, 2);
+	}
+}
 
+void usbKeyboardSendString(USBD_HandleTypeDef *pdev, uint8_t *dat, uint16_t len){
+	uint8_t usbReportBuf[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+	for(uint8_t i = 0; i < len; i++){
+		uint8_t character = dat[i];
+		if (!((character >= 'A') && (character <= 'Z')) && !((character >= 'a') && (character <= 'z')) && !((character >= '0') && (character <= '9'))){
+			continue;
+		}
+		//Prüfen, ob Shift Taste aktiviert werden muss
+		if ((character >= 'A')&&(character <= 'Z')){
+			usbReportBuf[0] = 0x02;
+			//In Kleinbuchstaben wandeln
+			character = character + ('a' - 'A');
+		}
+		if ((character >= 'a')&&(character <= 'z')){
+			usbReportBuf[2] = 0x04 + character - 'a';
+		}
+		if ((character >= '0')&&(character <= '9')){
+			usbReportBuf[0] = 0x00;
+			usbReportBuf[2] = character == '0' ? 0x27 : 0x1e + character - '1';
+		}
+		USBD_HID_SendReport(pdev, usbReportBuf, 8);
+		HAL_Delay(50);
+		usbReportBuf[0] = 0;
+		usbReportBuf[2] = 0;
+		USBD_HID_SendReport(pdev, usbReportBuf, 8);
+		HAL_Delay(50);
+	}
+}
 /* USER CODE END 4 */
 
 #ifdef USE_FULL_ASSERT

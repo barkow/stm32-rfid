@@ -1,8 +1,7 @@
 #include "MFRC522Desfire.h"
-#include "sha256.h"
-#include "hmac.h"
 #include "crc32.h"
 #include <vector>
+#include <fastpbkdf2.h>
 
 extern "C" {
 #include "aes.h"
@@ -74,49 +73,8 @@ byte MFRC522Desfire::PCD_ShiftLeft(byte *data, byte dataLen){
 
 byte MFRC522Desfire::PCD_Pbkdf2(byte* password, byte passLen, byte* salt, byte saltLen, int count, DesfireAesKey &key){
 	byte derivedKey[AES_KEY_LENGTH];
-	int hLen = 32;
-
-	byte U[32];
-	byte T[32];
-	byte *block1 = new byte[saltLen + 4];
-
-	int l = 1;
-	int r = 16;
-
-	//System.arraycopy(Salt, 0, block1, 0, Salt.length);
-	memcpy(block1, salt, saltLen);
-
-	for (int i = 1; i <= l; i++) {
-		block1[saltLen + 0] = (byte) (i >> 24 & 0xff);
-		block1[saltLen+ 1] = (byte) (i >> 16 & 0xff);
-		block1[saltLen+ 2] = (byte) (i >> 8  & 0xff);
-		block1[saltLen+ 3] = (byte) (i >> 0  & 0xff);
-
-		std::string mac = hmac<SHA256>(block1, saltLen + 4, password, passLen);
-		for (unsigned int i = 0; i < mac.length(); i += 2) {
-			std::string byteString = mac.substr(i, 2);
-			byte b = (byte) strtol(byteString.c_str(), NULL, 16);
-			U[i/2] = b;
-		}
-		memcpy(T, U, hLen);
-
-		for (int j = 1; j < count; j++) {
-			std::string mac = hmac<SHA256>(U, 32, password, passLen);
-			for (unsigned int i = 0; i < mac.length(); i += 2) {
-				std::string byteString = mac.substr(i, 2);
-				byte b = (byte) strtol(byteString.c_str(), NULL, 16);
-				U[i/2] = b;
-			}
-
-			for (int k = 0; k < hLen; k++) {
-				T[k] ^= U[k];
-			}
-		}
-
-		memcpy(&derivedKey[(i-1)*hLen], T, (i == l ? r : hLen));
-	}
+	fastpbkdf2_hmac_sha256(password, passLen, salt, saltLen, count, derivedKey, AES_KEY_LENGTH);
 	memcpy(key.keyByte, derivedKey, AES_KEY_LENGTH);
-	delete[] block1;
 	return STATUS_OK;
 }
 

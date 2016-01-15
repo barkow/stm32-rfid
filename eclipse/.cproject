@@ -115,6 +115,9 @@
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.nostart.178324932" name="Do not use standard start files (-nostartfiles)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.nostart" value="false" valueType="boolean"/>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.other.1487325899" name="Other linker flags" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.other" value="" valueType="string"/>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.usenewlibnano.908266383" name="Use newlib-nano (--specs=nano.specs)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.usenewlibnano" value="true" valueType="boolean"/>
+								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.libs.255944271" name="Libraries (-l)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.libs" valueType="libs"/>
+								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.paths.298088332" name="Library search path (-L)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.paths" valueType="libPaths"/>
+								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.printgcsections.1326261779" name="Print removed sections (-Xlinker --print-gc-sections)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.printgcsections" value="false" valueType="boolean"/>
 								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.linker.input.1761796034" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -134,19 +137,19 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.91787661" name="stm32f105xc.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f105xc.h" toolsToInvoke=""/>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.1052460061" name="stm32f103x6.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103x6.h" toolsToInvoke=""/>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.1753919282" name="stm32f102xb.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f102xb.h" toolsToInvoke=""/>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.1713732934" name="stm32f103xe.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h" toolsToInvoke=""/>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.2137271904" name="stm32f102x6.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f102x6.h" toolsToInvoke=""/>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.1511246301" name="stm32f103xg.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xg.h" toolsToInvoke=""/>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.729674715" name="stm32f100xe.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100xe.h" toolsToInvoke=""/>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.1536533961" name="stm32f101xb.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xb.h" toolsToInvoke=""/>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.123039203" name="stm32f107xc.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f107xc.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.413453652" name="stm32f101x6.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101x6.h" toolsToInvoke=""/>
+					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.123039203" name="stm32f107xc.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f107xc.h" toolsToInvoke=""/>
+					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.91787661" name="stm32f105xc.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f105xc.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.1108007013" name="stm32f101xe.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xe.h" toolsToInvoke=""/>
+					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.1052460061" name="stm32f103x6.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103x6.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.1994056636" name="stm32f100xb.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100xb.h" toolsToInvoke=""/>
+					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.1753919282" name="stm32f102xb.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f102xb.h" toolsToInvoke=""/>
+					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.2137271904" name="stm32f102x6.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f102x6.h" toolsToInvoke=""/>
+					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.1713732934" name="stm32f103xe.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.668499361" name="stm32f101xg.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xg.h" toolsToInvoke=""/>
+					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.1536533961" name="stm32f101xb.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xb.h" toolsToInvoke=""/>
+					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.729674715" name="stm32f100xe.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100xe.h" toolsToInvoke=""/>
+					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.1511246301" name="stm32f103xg.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xg.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.938322248" name="stm32f103xb.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h" toolsToInvoke=""/>
 					<folderInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.2039205084" name="/" resourcePath="stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Class/CDC">
 						<toolChain id="ilg.gnuarmeclipse.managedbuild.cross.toolchain.elf.debug.2139143647" name="Cross ARM GCC" superClass="ilg.gnuarmeclipse.managedbuild.cross.toolchain.elf.debug" unusedChildren="">
@@ -172,10 +175,20 @@
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.command.rm.1457013563.354051891" name="Remove command" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.command.rm.1457013563"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.addtools.createflash.812361954.276526331" name="Create flash image" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.addtools.createflash.812361954"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.addtools.printsize.625165580.490414440" name="Print size" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.addtools.printsize.625165580"/>
-							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.37627215" name="Cross ARM GNU Assembler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.690623156"/>
-							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.151047267" name="Cross ARM C Compiler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.1995304806"/>
-							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.665291246" name="Cross ARM C++ Compiler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.1653415423"/>
-							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.linker.854616130" name="Cross ARM C Linker" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.linker.758692555"/>
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="ilg.gnuarmeclipse.managedbuild.cross.targetPlatform" isAbstract="false" osList="all" superClass="ilg.gnuarmeclipse.managedbuild.cross.targetPlatform"/>
+							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.37627215" name="Cross ARM GNU Assembler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.690623156">
+								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.input.1241295509" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.input"/>
+							</tool>
+							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.151047267" name="Cross ARM C Compiler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.1995304806">
+								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input.1230641746" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input"/>
+							</tool>
+							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.665291246" name="Cross ARM C++ Compiler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.1653415423">
+								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.input.402377838" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.input"/>
+							</tool>
+							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.linker.854616130" name="Cross ARM C Linker" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.linker.758692555">
+								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.gcsections.1992442526" name="Remove unused sections (-Xlinker --gc-sections)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.gcsections" value="true" valueType="boolean"/>
+								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.printgcsections.292902752" name="Print removed sections (-Xlinker --print-gc-sections)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.printgcsections" value="false" valueType="boolean"/>
+							</tool>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.linker.1798418123" name="Cross ARM C++ Linker" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.linker.1354146591"/>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.archiver.205774630" name="Cross ARM GNU Archiver" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.archiver.1444071219"/>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.createflash.638509858" name="Cross ARM GNU Create Flash Image" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.createflash.256426398"/>
@@ -217,7 +230,10 @@
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.786168565" name="Cross ARM C++ Compiler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.1653415423">
 								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.input.2128776749" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.input"/>
 							</tool>
-							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.linker.815634594" name="Cross ARM C Linker" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.linker.758692555"/>
+							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.linker.815634594" name="Cross ARM C Linker" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.linker.758692555">
+								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.gcsections.1640025718" name="Remove unused sections (-Xlinker --gc-sections)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.gcsections" value="true" valueType="boolean"/>
+								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.printgcsections.1340064770" name="Print removed sections (-Xlinker --print-gc-sections)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.printgcsections" value="false" valueType="boolean"/>
+							</tool>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.linker.1905100508" name="Cross ARM C++ Linker" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.linker.1354146591"/>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.archiver.1694059130" name="Cross ARM GNU Archiver" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.archiver.1444071219"/>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.createflash.2063670421" name="Cross ARM GNU Create Flash Image" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.createflash.256426398"/>
@@ -262,7 +278,7 @@
 				<configuration artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.release,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe" cleanCommand="${cross_rm} -rf" description="" id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559" name="Release" parent="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release">
 					<folderInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559." name="/" resourcePath="">
 						<toolChain id="ilg.gnuarmeclipse.managedbuild.cross.toolchain.elf.release.278239228" name="Cross ARM GCC" superClass="ilg.gnuarmeclipse.managedbuild.cross.toolchain.elf.release">
-							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.level.1264828632" name="Optimization Level" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.level" value="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.level.size" valueType="enumerated"/>
+							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.level.1264828632" name="Optimization Level" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.level" value="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.level.most" valueType="enumerated"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.messagelength.1300574026" name="Message length (-fmessage-length=0)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.messagelength" value="true" valueType="boolean"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.signedchar.1889344057" name="'char' is signed (-fsigned-char)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.signedchar" value="true" valueType="boolean"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.functionsections.294940826" name="Function sections (-ffunction-sections)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.functionsections" value="true" valueType="boolean"/>
@@ -376,19 +392,19 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1135565143" name="stm32f105xc.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f105xc.h" toolsToInvoke=""/>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1513909115" name="stm32f103x6.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103x6.h" toolsToInvoke=""/>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.64426994" name="stm32f102xb.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f102xb.h" toolsToInvoke=""/>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.186739822" name="stm32f103xe.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h" toolsToInvoke=""/>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.2119454509" name="stm32f102x6.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f102x6.h" toolsToInvoke=""/>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1254885025" name="stm32f103xg.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xg.h" toolsToInvoke=""/>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1437167397" name="stm32f100xe.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100xe.h" toolsToInvoke=""/>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1490331975" name="stm32f101xb.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xb.h" toolsToInvoke=""/>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1454895385" name="stm32f107xc.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f107xc.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.2022239305" name="stm32f101x6.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101x6.h" toolsToInvoke=""/>
+					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1454895385" name="stm32f107xc.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f107xc.h" toolsToInvoke=""/>
+					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1135565143" name="stm32f105xc.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f105xc.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1141690791" name="stm32f101xe.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xe.h" toolsToInvoke=""/>
+					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1513909115" name="stm32f103x6.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103x6.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1379114779" name="stm32f100xb.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100xb.h" toolsToInvoke=""/>
+					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.64426994" name="stm32f102xb.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f102xb.h" toolsToInvoke=""/>
+					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.2119454509" name="stm32f102x6.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f102x6.h" toolsToInvoke=""/>
+					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.186739822" name="stm32f103xe.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.371028759" name="stm32f101xg.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xg.h" toolsToInvoke=""/>
+					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1490331975" name="stm32f101xb.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xb.h" toolsToInvoke=""/>
+					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1437167397" name="stm32f100xe.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100xe.h" toolsToInvoke=""/>
+					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1254885025" name="stm32f103xg.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xg.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1136748008" name="stm32f103xb.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h" toolsToInvoke=""/>
 					<folderInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.561060799" name="/" resourcePath="stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Class/CDC">
 						<toolChain id="ilg.gnuarmeclipse.managedbuild.cross.toolchain.elf.release.1801488813" name="Cross ARM GCC" superClass="ilg.gnuarmeclipse.managedbuild.cross.toolchain.elf.release" unusedChildren="">
@@ -414,9 +430,16 @@
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.command.rm.356894081.143876520" name="Remove command" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.command.rm.356894081"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.addtools.createflash.370289413.762014999" name="Create flash image" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.addtools.createflash.370289413"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.addtools.printsize.999864623.1419625143" name="Print size" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.addtools.printsize.999864623"/>
-							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.1818635388" name="Cross ARM GNU Assembler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.1016185561"/>
-							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.656447408" name="Cross ARM C Compiler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.1124273409"/>
-							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.298201878" name="Cross ARM C++ Compiler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.2101990309"/>
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="ilg.gnuarmeclipse.managedbuild.cross.targetPlatform" isAbstract="false" osList="all" superClass="ilg.gnuarmeclipse.managedbuild.cross.targetPlatform"/>
+							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.1818635388" name="Cross ARM GNU Assembler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.1016185561">
+								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.input.1501373990" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.input"/>
+							</tool>
+							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.656447408" name="Cross ARM C Compiler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.1124273409">
+								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input.403964536" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input"/>
+							</tool>
+							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.298201878" name="Cross ARM C++ Compiler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.2101990309">
+								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.input.782704984" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.input"/>
+							</tool>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.linker.1310057955" name="Cross ARM C Linker" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.linker.1906745462"/>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.linker.449710827" name="Cross ARM C++ Linker" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.linker.1169164026"/>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.archiver.1866005353" name="Cross ARM GNU Archiver" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.archiver.736476647"/>

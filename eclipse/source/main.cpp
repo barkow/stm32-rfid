@@ -45,6 +45,7 @@
 #include "secrets.h"
 #include "usbd_hid.h"
 #include "display.h"
+
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -92,7 +93,6 @@ int main(void)
   MX_USB_DEVICE_Init();
 
   /* USER CODE BEGIN 2 */
-
   MFRC522Desfire mfrc522;
   mfrc522.PCD_Init();
   volatile uint8_t t = mfrc522.PCD_ReadRegister(mfrc522.VersionReg);
@@ -108,8 +108,9 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   uint8_t da[] = {0x01, 0x23, 0x45, 0x67, 0x89, 0xab, 0xcd, 0xef};
-  HAL_Delay(5000);
-  usbKeyboardSendHex(&hUsbDeviceFS, da, 8);
+  HAL_Delay(3000);
+
+  usbKeyboardSendString(&hUsbDeviceFS, (uint8_t*)"ikafkarfid", 10);
   while (1)
   {
   /* USER CODE END WHILE */
@@ -122,7 +123,7 @@ int main(void)
 	  if (mfrc522.PICC_Select(&uid) != mfrc522.STATUS_OK){
 		  continue;
 	  }
-	  //CDC_Transmit_FS(uid.uidByte, 7);
+	  usbKeyboardSendHex(&hUsbDeviceFS, uid.uidByte, 7);
 	  if (mfrc522.Desfire_SelectApplication(0x000005) != mfrc522.STATUS_OK){
 	  	continue;
 	  }
@@ -135,7 +136,7 @@ int main(void)
 	  if (mfrc522.Desfire_ReadData(5, 0, 32, data, &dataLen) != mfrc522.STATUS_OK){
 		  continue;
 	  }
-	  //CDC_Transmit_FS(data, 32);
+	  usbKeyboardSendHex(&hUsbDeviceFS, data, 4);
   }
   /* USER CODE END 3 */
 
@@ -210,11 +211,11 @@ void usbKeyboardSendString(USBD_HandleTypeDef *pdev, uint8_t *dat, uint16_t len)
 			usbReportBuf[2] = character == '0' ? 0x27 : 0x1e + character - '1';
 		}
 		USBD_HID_SendReport(pdev, usbReportBuf, 8);
-		HAL_Delay(50);
+		HAL_Delay(20);
 		usbReportBuf[0] = 0;
 		usbReportBuf[2] = 0;
 		USBD_HID_SendReport(pdev, usbReportBuf, 8);
-		HAL_Delay(50);
+		HAL_Delay(20);
 	}
 }
 /* USER CODE END 4 */

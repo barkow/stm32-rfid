@@ -51,6 +51,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+#define USBHIDKEYDELAY 40
 /* Private variables ---------------------------------------------------------*/
 SPIClass SPI;
 /* USER CODE END PV */
@@ -119,11 +120,14 @@ int main(void)
 	  HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET);
 	  while (!mfrc522.PICC_IsNewCardPresent()){}
 	  HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
+	  usbKeyboardSendString(&hUsbDeviceFS, (uint8_t*)"!:new::!", 8);
 	  MFRC522::Uid uid;
 	  if (mfrc522.PICC_Select(&uid) != mfrc522.STATUS_OK){
 		  continue;
 	  }
+	  usbKeyboardSendString(&hUsbDeviceFS, (uint8_t*)"!:uid:", 6);
 	  usbKeyboardSendHex(&hUsbDeviceFS, uid.uidByte, 7);
+	  usbKeyboardSendString(&hUsbDeviceFS, (uint8_t*)":!", 2);
 	  if (mfrc522.Desfire_SelectApplication(0x000005) != mfrc522.STATUS_OK){
 	  	continue;
 	  }
@@ -136,7 +140,9 @@ int main(void)
 	  if (mfrc522.Desfire_ReadData(5, 0, 32, data, &dataLen) != mfrc522.STATUS_OK){
 		  continue;
 	  }
+	  usbKeyboardSendString(&hUsbDeviceFS, (uint8_t*)"!:opnId:", 8);
 	  usbKeyboardSendHex(&hUsbDeviceFS, data, 4);
+	  usbKeyboardSendString(&hUsbDeviceFS, (uint8_t*)":!", 2);
   }
   /* USER CODE END 3 */
 
@@ -194,7 +200,7 @@ void usbKeyboardSendString(USBD_HandleTypeDef *pdev, uint8_t *dat, uint16_t len)
 	uint8_t usbReportBuf[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 	for(uint8_t i = 0; i < len; i++){
 		uint8_t character = dat[i];
-		if (!((character >= 'A') && (character <= 'Z')) && !((character >= 'a') && (character <= 'z')) && !((character >= '0') && (character <= '9'))){
+		if (!((character >= 'A') && (character <= 'Z')) && !((character >= 'a') && (character <= 'z')) && !((character >= '0') && (character <= '9')) && !(character == ':') && !(character == '!')){
 			continue;
 		}
 		//Prüfen, ob Shift Taste aktiviert werden muss
@@ -210,12 +216,20 @@ void usbKeyboardSendString(USBD_HandleTypeDef *pdev, uint8_t *dat, uint16_t len)
 			usbReportBuf[0] = 0x00;
 			usbReportBuf[2] = character == '0' ? 0x27 : 0x1e + character - '1';
 		}
+		if ((character == '!')){
+			usbReportBuf[0] = 0x02;
+			usbReportBuf[2] = 0x1e;
+		}
+		if ((character == ':')){
+			usbReportBuf[0] = 0x02;
+			usbReportBuf[2] = 0x37;
+		}
 		USBD_HID_SendReport(pdev, usbReportBuf, 8);
-		HAL_Delay(20);
+		HAL_Delay(USBHIDKEYDELAY);
 		usbReportBuf[0] = 0;
 		usbReportBuf[2] = 0;
 		USBD_HID_SendReport(pdev, usbReportBuf, 8);
-		HAL_Delay(20);
+		HAL_Delay(USBHIDKEYDELAY);
 	}
 }
 /* USER CODE END 4 */

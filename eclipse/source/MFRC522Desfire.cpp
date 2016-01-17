@@ -254,12 +254,16 @@ byte MFRC522Desfire::Desfire_SelectApplication(uint32_t applicationId){
 	return STATUS_OK;
 }
 
-byte MFRC522Desfire::Desfire_Authenticate(byte keyNo, std::string password, std::string salt){
+MFRC522Desfire::DesfireAesKey MFRC522Desfire::DeriveKeyFromPassword(std::string password, std::string salt){
 	MFRC522Desfire::DesfireAesKey key;
 	std::vector<byte> passBytes(password.begin(), password.end());
 	std::vector<byte> saltBytes(salt.begin(), salt.end());
 	PCD_Pbkdf2(&passBytes[0], password.length(), &saltBytes[0], salt.length(), 10000, key);
-	return Desfire_Authenticate(keyNo, key);
+	return key;
+}
+
+byte MFRC522Desfire::Desfire_Authenticate(byte keyNo, std::string password, std::string salt){
+	return Desfire_Authenticate(keyNo, DeriveKeyFromPassword(password, salt));
 }
 
 byte MFRC522Desfire::Desfire_Authenticate(byte keyNo, std::string password){

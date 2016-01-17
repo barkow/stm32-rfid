@@ -108,19 +108,20 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  uint8_t da[] = {0x01, 0x23, 0x45, 0x67, 0x89, 0xab, 0xcd, 0xef};
-  HAL_Delay(3000);
-
-  usbKeyboardSendString(&hUsbDeviceFS, (uint8_t*)"ikafkarfid", 10);
+  //Key für OpendoScala vorberechnen, da nicht mit kartenabhängigem Salt versehen
+  MFRC522Desfire::DesfireAesKey opendoScalaKey = mfrc522.DeriveKeyFromPassword(IKAFKAOPENDOSCALAPASSWORD, "");
   while (1)
   {
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
 	  HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET);
+	  //Auf Erkennugn von RFID Karte warten
 	  while (!mfrc522.PICC_IsNewCardPresent()){}
 	  HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
+	  //Melden, dass neue RFID Karte erkannt wurde
 	  usbKeyboardSendString(&hUsbDeviceFS, (uint8_t*)"!:new::!", 8);
+	  //UID auslesen und ausgeben
 	  MFRC522::Uid uid;
 	  if (mfrc522.PICC_Select(&uid) != mfrc522.STATUS_OK){
 		  continue;
@@ -128,16 +129,17 @@ int main(void)
 	  usbKeyboardSendString(&hUsbDeviceFS, (uint8_t*)"!:uid:", 6);
 	  usbKeyboardSendHex(&hUsbDeviceFS, uid.uidByte, 7);
 	  usbKeyboardSendString(&hUsbDeviceFS, (uint8_t*)":!", 2);
-	  if (mfrc522.Desfire_SelectApplication(0x000005) != mfrc522.STATUS_OK){
+
+	  //Applikation OpendoScala auslesen
+	  if (mfrc522.Desfire_SelectApplication(IKAFKAOPENDOSCALAAPPID) != mfrc522.STATUS_OK){
 	  	continue;
 	  }
-
-	  if (mfrc522.Desfire_Authenticate(1, IKAFKAOPENDOSCALAPASSWORD) != mfrc522.STATUS_OK){
+	  if (mfrc522.Desfire_Authenticate(IKAFKAOPENDOSCALAKEYNO, opendoScalaKey) != mfrc522.STATUS_OK){
 		  continue;
 	  }
-	  byte data[32];
-	  byte dataLen = 32;
-	  if (mfrc522.Desfire_ReadData(5, 0, 32, data, &dataLen) != mfrc522.STATUS_OK){
+	  byte data[4];
+	  byte dataLen = 4;
+	  if (mfrc522.Desfire_ReadData(IKAFKAOPENDOSCALAFILENO, 0, 4, data, &dataLen) != mfrc522.STATUS_OK){
 		  continue;
 	  }
 	  usbKeyboardSendString(&hUsbDeviceFS, (uint8_t*)"!:opnId:", 8);

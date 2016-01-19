@@ -23,6 +23,7 @@ class MFRC522Desfire : public MFRC522 {
 		byte Desfire_Authenticate(byte keyNo, DesfireAesKey key);
 		byte Desfire_Authenticate(byte keyNo, std::string password);
 		byte Desfire_Authenticate(byte keyNo, std::string password, std::string salt);
+		byte Desfire_Authenticate(byte keyNo, std::string password, byte* uid, byte uidLen, std::string salt);
 		byte Desfire_GetValue(byte fileNo, uint32_t &value);
 		byte Desfire_Credit(byte fileNo, uint32_t value);
 		byte Desfire_Debit(byte fileNo, uint32_t value);

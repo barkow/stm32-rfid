@@ -266,6 +266,20 @@ byte MFRC522Desfire::Desfire_Authenticate(byte keyNo, std::string password, std:
 	return Desfire_Authenticate(keyNo, DeriveKeyFromPassword(password, salt));
 }
 
+byte MFRC522Desfire::Desfire_Authenticate(byte keyNo, std::string password, byte* uid, byte uidLen, std::string salt){
+	if (uidLen > 7){
+		return STATUS_ERROR;
+	}
+	//UID in Hex String umrechnen
+	std::string hexUid;
+	for(int i = 0; i < uidLen; i++){
+		hexUid += ((uid[i] >> 4) & 0x0f) <= 9 ? ((uid[i] >> 4) & 0x0f) + '0' : ((uid[i] >> 4) & 0x0f) - 10 + 'a';
+		hexUid += (uid[i] & 0x0f) <= 9 ? (uid[i] & 0x0f) + '0' : (uid[i] & 0x0f) - 10 + 'a';
+	}
+
+	return Desfire_Authenticate(keyNo, DeriveKeyFromPassword(password, hexUid + salt));
+}
+
 byte MFRC522Desfire::Desfire_Authenticate(byte keyNo, std::string password){
 	return Desfire_Authenticate(keyNo, password, "");
 }

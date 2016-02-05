@@ -36,7 +36,12 @@
 #include "stm32f1xx_hal.h"
 #include "usbd_def.h"
 #include "usbd_core.h"
+#ifdef USE_USB_CDC
 #include "usbd_cdc.h"
+#endif
+#ifdef USE_USB_HID
+#include "usbd_hid.h"
+#endif
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
@@ -265,9 +270,14 @@ USBD_StatusTypeDef  USBD_LL_Init (USBD_HandleTypeDef *pdev)
 
   HAL_PCDEx_PMAConfig(pdev->pData , 0x00 , PCD_SNG_BUF, 0x18);
   HAL_PCDEx_PMAConfig(pdev->pData , 0x80 , PCD_SNG_BUF, 0x58);
+#ifdef USE_USB_HID
+  HAL_PCDEx_PMAConfig(pdev->pData , 0x81 , PCD_SNG_BUF, 0x100);
+#endif
+#ifdef USE_USB_CDC
   HAL_PCDEx_PMAConfig(pdev->pData , 0x81 , PCD_SNG_BUF, 0xC0);  
   HAL_PCDEx_PMAConfig(pdev->pData , 0x01 , PCD_SNG_BUF, 0x110);
-  HAL_PCDEx_PMAConfig(pdev->pData , 0x82 , PCD_SNG_BUF, 0x100);  
+  HAL_PCDEx_PMAConfig(pdev->pData , 0x82 , PCD_SNG_BUF, 0x100);
+#endif
   return USBD_OK;
 }
 
@@ -474,7 +484,12 @@ void  USBD_LL_Delay (uint32_t Delay)
   */
 void *USBD_static_malloc(uint32_t size)
 {
+#ifdef USE_USB_CDC
   static uint32_t mem[(sizeof(USBD_CDC_HandleTypeDef)/4)+1];//On 32-bit boundary
+#endif
+#ifdef USE_USB_HID
+  static uint32_t mem[(sizeof(USBD_HID_HandleTypeDef)/4)+1];//On 32-bit boundary
+#endif
   return mem;
 }
 
@@ -485,7 +500,9 @@ void *USBD_static_malloc(uint32_t size)
   */
 void USBD_static_free(void *p)
 {
+#ifdef USE_USB_CDC
   free(p);
+#endif
 }
 
 /**

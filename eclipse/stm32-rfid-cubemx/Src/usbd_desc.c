@@ -59,13 +59,13 @@
 #define USBD_VID     1155
 #define USBD_LANGID_STRING     1033
 #define USBD_MANUFACTURER_STRING     "STMicroelectronics"
-#define USBD_PID_FS     22316
-#define USBD_PRODUCT_STRING_FS     "STM32 Human interface"
+#define USBD_PID_FS     22336
+#define USBD_PRODUCT_STRING_FS     "STM32 Virtual ComPort"
 /* USER CODE BEGIN SERIALNUMBER_STRING_FS */
 #define USBD_SERIALNUMBER_STRING_FS     "00000000001A"
 /* USER CODE END SERIALNUMBER_STRING_FS */
-#define USBD_CONFIGURATION_STRING_FS     "HID Config"
-#define USBD_INTERFACE_STRING_FS     "HID Interface"
+#define USBD_CONFIGURATION_STRING_FS     "CDC Config"
+#define USBD_INTERFACE_STRING_FS     "CDC Interface"
 
 /**
   * @}

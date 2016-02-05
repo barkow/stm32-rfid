@@ -53,6 +53,7 @@
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/crypto&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Core/Inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc&quot;"/>
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.defs.867111424" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.defs" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="USE_HAL_DRIVER"/>
@@ -71,6 +72,7 @@
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/crypto&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Core/Inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc&quot;"/>
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.defs.1903488138" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.defs" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="USE_HAL_DRIVER"/>
@@ -89,6 +91,7 @@
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/crypto&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Core/Inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc&quot;"/>
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.defs.572211066" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.defs" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="USE_HAL_DRIVER"/>
@@ -137,18 +140,18 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.413453652" name="stm32f101x6.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101x6.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.123039203" name="stm32f107xc.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f107xc.h" toolsToInvoke=""/>
+					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.413453652" name="stm32f101x6.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101x6.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.91787661" name="stm32f105xc.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f105xc.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.1108007013" name="stm32f101xe.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xe.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.1052460061" name="stm32f103x6.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103x6.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.1994056636" name="stm32f100xb.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100xb.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.1753919282" name="stm32f102xb.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f102xb.h" toolsToInvoke=""/>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.2137271904" name="stm32f102x6.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f102x6.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.1713732934" name="stm32f103xe.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h" toolsToInvoke=""/>
+					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.2137271904" name="stm32f102x6.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f102x6.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.668499361" name="stm32f101xg.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xg.h" toolsToInvoke=""/>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.1536533961" name="stm32f101xb.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xb.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.729674715" name="stm32f100xe.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100xe.h" toolsToInvoke=""/>
+					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.1536533961" name="stm32f101xb.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xb.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.1511246301" name="stm32f103xg.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xg.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.938322248" name="stm32f103xb.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h" toolsToInvoke=""/>
 					<folderInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1812488938.2039205084" name="/" resourcePath="stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Class/CDC">
@@ -242,7 +245,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Class/CDC|stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Class/MSC|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103x6.h|stm32-rfid-cubemx/Src/main.c|rfid/examples|stm32-rfid-cubemx/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_msp_template.c|stm32-rfid-cubemx/Drivers/CMSIS/RTOS|stm32-rfid-cubemx/Drivers/CMSIS/DSP_Lib|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xg.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f107xc.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f105xc.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f102xb.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f102x6.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xg.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xe.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100xe.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xb.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101x6.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100xb.h" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Class/MSC|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103x6.h|stm32-rfid-cubemx/Src/main.c|rfid/examples|stm32-rfid-cubemx/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_msp_template.c|stm32-rfid-cubemx/Drivers/CMSIS/RTOS|stm32-rfid-cubemx/Drivers/CMSIS/DSP_Lib|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xg.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f107xc.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f105xc.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f102xb.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f102x6.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xg.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xe.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100xe.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xb.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101x6.h|stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100xb.h" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -314,6 +317,7 @@
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/crypto&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Core/Inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc&quot;"/>
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.defs.1076673051" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.defs" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="USE_HAL_DRIVER"/>
@@ -332,6 +336,7 @@
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/crypto&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Core/Inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc&quot;"/>
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.defs.44503875" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.defs" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="USE_HAL_DRIVER"/>
@@ -350,6 +355,7 @@
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/crypto&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Core/Inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc&quot;"/>
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.defs.1423798099" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.defs" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="USE_HAL_DRIVER"/>
@@ -392,18 +398,18 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1454895385" name="stm32f107xc.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f107xc.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.2022239305" name="stm32f101x6.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101x6.h" toolsToInvoke=""/>
+					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1454895385" name="stm32f107xc.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f107xc.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1135565143" name="stm32f105xc.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f105xc.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1141690791" name="stm32f101xe.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xe.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1513909115" name="stm32f103x6.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103x6.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1379114779" name="stm32f100xb.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100xb.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.64426994" name="stm32f102xb.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f102xb.h" toolsToInvoke=""/>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.186739822" name="stm32f103xe.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.2119454509" name="stm32f102x6.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f102x6.h" toolsToInvoke=""/>
+					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.186739822" name="stm32f103xe.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.371028759" name="stm32f101xg.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xg.h" toolsToInvoke=""/>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1437167397" name="stm32f100xe.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100xe.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1490331975" name="stm32f101xb.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f101xb.h" toolsToInvoke=""/>
+					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1437167397" name="stm32f100xe.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100xe.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1254885025" name="stm32f103xg.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xg.h" toolsToInvoke=""/>
 					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.1136748008" name="stm32f103xb.h" rcbsApplicability="disable" resourcePath="stm32-rfid-cubemx/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h" toolsToInvoke=""/>
 					<folderInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.1982687559.561060799" name="/" resourcePath="stm32-rfid-cubemx/Middlewares/ST/STM32_USB_Device_Library/Class/CDC">

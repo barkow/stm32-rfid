@@ -157,7 +157,7 @@ int main(void)
 	  if (mfrc522.Desfire_ReadData(IKAFKAIDENTCARDIDFILENO, 0, 4, data, &dataLen) != mfrc522.STATUS_OK){
 		  continue;
 	  }
-	  usbKeyboardSendString(&hUsbDeviceFS, (uint8_t*)"!:ifiCard:", 8);
+	  usbKeyboardSendString(&hUsbDeviceFS, (uint8_t*)"!:ifiCard:", 10);
 	  usbKeyboardSendHex(&hUsbDeviceFS, data, 4);
 	  usbKeyboardSendString(&hUsbDeviceFS, (uint8_t*)":!", 2);
 	  if (mfrc522.Desfire_Authenticate(IKAFKAIDENTSTAFFIDKEYNO, IKAFKAIDENTSTAFFIDPASSWORD, uid.uidByte, uid.size, "") != mfrc522.STATUS_OK){
@@ -167,7 +167,7 @@ int main(void)
 	  if (mfrc522.Desfire_ReadData(IKAFKAIDENTSTAFFIDFILENO, 0, 4, data, &dataLen) != mfrc522.STATUS_OK){
 		  continue;
 	  }
-	  usbKeyboardSendString(&hUsbDeviceFS, (uint8_t*)"!:ifiStff:", 8);
+	  usbKeyboardSendString(&hUsbDeviceFS, (uint8_t*)"!:ifiStff:", 10);
 	  usbKeyboardSendHex(&hUsbDeviceFS, data, 4);
 	  usbKeyboardSendString(&hUsbDeviceFS, (uint8_t*)":!", 2);
   }

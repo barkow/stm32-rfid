@@ -52,7 +52,7 @@
 #include "usb_hid_logic.h"
 #endif
 #ifdef USE_USB_CDC
-#include "usbd_cdc.h"
+#include "usb_cdc_logic.h"
 #endif
 #include "display.h"
 
@@ -112,76 +112,13 @@ int main(void)
   //mfrc522.PCD_SetAntennaGain(mfrc522.RxGain_max);
   mfrc522.PCD_SetAntennaGain(0xff);
 
-
-  /* USER CODE END 2 */
-
   /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-  //Key für OpendoScala vorberechnen, da nicht mit kartenabhängigem Salt versehen
-  MFRC522Desfire::DesfireAesKey opendoScalaKey = mfrc522.DeriveKeyFromPassword(IKAFKAOPENDOSCALAPASSWORD, "");
-  while (1)
-  {
-  /* USER CODE END WHILE */
-
-  /* USER CODE BEGIN 3 */
-	  HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET);
-	  //Auf Erkennugn von RFID Karte warten
-	  while (!mfrc522.PICC_IsNewCardPresent()){}
-	  HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
-	  //Melden, dass neue RFID Karte erkannt wurde
-	  usbSendString(&hUsbDeviceFS, (uint8_t*)"!:new::!", 8);
-	  //UID auslesen und ausgeben
-	  MFRC522::Uid uid;
-	  if (mfrc522.PICC_Select(&uid) != mfrc522.STATUS_OK){
-		  continue;
-	  }
-	  usbSendString(&hUsbDeviceFS, (uint8_t*)"!:uid:", 6);
-	  usbSendHex(&hUsbDeviceFS, uid.uidByte, 7);
-	  usbSendString(&hUsbDeviceFS, (uint8_t*)":!", 2);
-
-	  //Applikation OpendoScala auslesen
-	  if (mfrc522.Desfire_SelectApplication(IKAFKAOPENDOSCALAAPPID) != mfrc522.STATUS_OK){
-	  	continue;
-	  }
-	  if (mfrc522.Desfire_Authenticate(IKAFKAOPENDOSCALAKEYNO, opendoScalaKey) != mfrc522.STATUS_OK){
-		  continue;
-	  }
-	  byte data[32];
-	  byte dataLen = 4;
-	  if (mfrc522.Desfire_ReadData(IKAFKAOPENDOSCALAFILENO, 0, 4, data, &dataLen) != mfrc522.STATUS_OK){
-		  continue;
-	  }
-	  usbSendString(&hUsbDeviceFS, (uint8_t*)"!:opnId:", 8);
-	  usbSendHex(&hUsbDeviceFS, data, 4);
-	  usbSendString(&hUsbDeviceFS, (uint8_t*)":!", 2);
-
-	  //Applikation IkaFkaIdent auslesen
-	  if (mfrc522.Desfire_SelectApplication(IKAFKAIDENTAPPID) != mfrc522.STATUS_OK){
-		continue;
-	  }
-	  if (mfrc522.Desfire_Authenticate(IKAFKAIDENTCARDIDKEYNO, IKAFKAIDENTCARDIDPASSWORD, uid.uidByte, uid.size, "") != mfrc522.STATUS_OK){
-		  continue;
-	  }
-	  dataLen = 4;
-	  if (mfrc522.Desfire_ReadData(IKAFKAIDENTCARDIDFILENO, 0, 4, data, &dataLen) != mfrc522.STATUS_OK){
-		  continue;
-	  }
-	  usbSendString(&hUsbDeviceFS, (uint8_t*)"!:ifiCard:", 10);
-	  usbSendHex(&hUsbDeviceFS, data, 4);
-	  usbSendString(&hUsbDeviceFS, (uint8_t*)":!", 2);
-	  if (mfrc522.Desfire_Authenticate(IKAFKAIDENTSTAFFIDKEYNO, IKAFKAIDENTSTAFFIDPASSWORD, uid.uidByte, uid.size, "") != mfrc522.STATUS_OK){
-		  continue;
-	  }
-	  dataLen = 4;
-	  if (mfrc522.Desfire_ReadData(IKAFKAIDENTSTAFFIDFILENO, 0, 4, data, &dataLen) != mfrc522.STATUS_OK){
-		  continue;
-	  }
-	  usbSendString(&hUsbDeviceFS, (uint8_t*)"!:ifiStff:", 10);
-	  usbSendHex(&hUsbDeviceFS, data, 4);
-	  usbSendString(&hUsbDeviceFS, (uint8_t*)":!", 2);
-  }
-  /* USER CODE END 3 */
-
+#ifdef USE_USB_HID
+  usbHidLoop(&mfrc522, &hUsbDeviceFS);
+#endif
+#ifdef USE_USB_CDC
+  usbCdcLoop(&mfrc522, &hUsbDeviceFS);
+#endif
 }
 
 /** System Clock Configuration
@@ -221,17 +158,6 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-inline void usbSendString(USBD_HandleTypeDef *pdev, uint8_t *dat, uint16_t len){
-#ifdef USE_USB_HID
-	usbKeyboardSendString(pdev, dat, len);
-#endif
-}
-
-inline void usbSendHex(USBD_HandleTypeDef *pdev, uint8_t *dat, uint16_t len){
-#ifdef USE_USB_HID
-	usbKeyboardSendHex(pdev, dat, len);
-#endif
-}
 /* USER CODE END 4 */
 
 #ifdef USE_FULL_ASSERT

@@ -14,6 +14,16 @@ void usbKeyboardSendHex(USBD_HandleTypeDef *pdev, uint8_t *dat, uint16_t len){
 	}
 }
 
+//Ausgabe eines nullterminierten Strings
+void usbKeyboardSendString(USBD_HandleTypeDef *pdev, uint8_t *dat){
+	uint16_t len = 0;
+	//Implizit wird angenommen, dass der String nicht länger als 100 Zeichen ist
+	while((dat[len] != 0) && (len < 100)){
+		len++;
+	}
+	usbKeyboardSendString(pdev, dat, len);
+}
+
 void usbKeyboardSendString(USBD_HandleTypeDef *pdev, uint8_t *dat, uint16_t len){
 	uint8_t usbReportBuf[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 	for(uint8_t i = 0; i < len; i++){
@@ -103,12 +113,12 @@ void usbHidLoop(MFRC522Desfire *mfrc522, USBD_HandleTypeDef *pdev){
 		if (mfrc522->Desfire_Authenticate(IKAFKAIDENTSTAFFIDKEYNO, IKAFKAIDENTSTAFFIDPASSWORD, uid.uidByte, uid.size, "") != mfrc522->STATUS_OK){
 			continue;
 		}
-		dataLen = 4;
-		if (mfrc522->Desfire_ReadData(IKAFKAIDENTSTAFFIDFILENO, 0, 4, data, &dataLen) != mfrc522->STATUS_OK){
+		dataLen = 32;
+		if (mfrc522->Desfire_ReadData(IKAFKAIDENTSTAFFIDFILENO, 0, 32, data, &dataLen) != mfrc522->STATUS_OK){
 			continue;
 		}
 		usbKeyboardSendString(pdev, (uint8_t*)"!:ifiStff:", 10);
-		usbKeyboardSendHex(pdev, data, 4);
+		usbKeyboardSendString(pdev, data);
 		usbKeyboardSendString(pdev, (uint8_t*)":!", 2);
 	}
 }

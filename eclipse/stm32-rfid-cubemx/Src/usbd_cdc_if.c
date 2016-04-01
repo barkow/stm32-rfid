@@ -254,6 +254,18 @@ static int8_t CDC_Control_FS  (uint8_t cmd, uint8_t* pbuf, uint16_t length)
 static int8_t CDC_Receive_FS (uint8_t* Buf, uint32_t *Len)
 {
   /* USER CODE BEGIN 6 */
+	static uint8_t buff_RX[256];
+	static uint8_t buff_TX[256];
+
+	int i = 0;
+
+	for (i = 0; i < *Len; i++)
+		buff_TX[i] = buff_RX[i];
+
+	USBD_CDC_SetTxBuffer(&hUsbDeviceFS, &buff_TX[0], *Len);
+	USBD_CDC_TransmitPacket(&hUsbDeviceFS);
+	USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &buff_RX[0]);
+	USBD_CDC_ReceivePacket(&hUsbDeviceFS);
   return (USBD_OK);
   /* USER CODE END 6 */ 
 }

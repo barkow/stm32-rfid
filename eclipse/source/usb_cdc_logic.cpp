@@ -2,22 +2,26 @@
 
 #include "usb_cdc_logic.h"
 #include "secrets.h"
+#include "usbd_cdc_if.h"
+
+#define MAXLEN 32
 
 void usbCdcLoop(MFRC522Desfire *mfrc522, USBD_HandleTypeDef *pdev){
 	//Key für OpendoScala vorberechnen, da nicht mit kartenabhängigem Salt versehen
 	MFRC522Desfire::DesfireAesKey opendoScalaKey = mfrc522->DeriveKeyFromPassword(IKAFKAOPENDOSCALAPASSWORD, "");
 	while (1) {
 		HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET);
-		//Auf Erkennugn von RFID Karte warten
+		//Auf Erkennung von RFID Karte warten
 		while (!mfrc522->PICC_IsNewCardPresent()){}
 		HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
 		//Melden, dass neue RFID Karte erkannt wurde
-		//usbKeyboardSendString(pdev, (uint8_t*)"!:new::!", 8);
 		//UID auslesen und ausgeben
 		MFRC522::Uid uid;
 		if (mfrc522->PICC_Select(&uid) != mfrc522->STATUS_OK){
 			continue;
 		}
+		CDC_Transmit_FS((uint8_t*) "UID", 3);
+		CDC_Transmit_FS(uid.uidByte, 7);
 		//usbKeyboardSendString(pdev, (uint8_t*)"!:uid:", 6);
 		//usbKeyboardSendHex(pdev, uid.uidByte, 7);
 		//usbKeyboardSendString(pdev, (uint8_t*)":!", 2);

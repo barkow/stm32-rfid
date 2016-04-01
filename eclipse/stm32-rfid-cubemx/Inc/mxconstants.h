@@ -42,14 +42,14 @@
 #define LED1_GPIO_Port GPIOC
 #define RFID_RESET_Pin GPIO_PIN_3
 #define RFID_RESET_GPIO_Port GPIOA
-#define RFID_CS_Pin GPIO_PIN_4
-#define RFID_CS_GPIO_Port GPIOA
 #define RFID_SCK_Pin GPIO_PIN_5
 #define RFID_SCK_GPIO_Port GPIOA
 #define RFID_MISO_Pin GPIO_PIN_6
 #define RFID_MISO_GPIO_Port GPIOA
 #define RFID_MOSI_Pin GPIO_PIN_7
 #define RFID_MOSI_GPIO_Port GPIOA
+#define RFID_CS_Pin GPIO_PIN_1
+#define RFID_CS_GPIO_Port GPIOB
 #define LCD_CS_Pin GPIO_PIN_12
 #define LCD_CS_GPIO_Port GPIOB
 #define LCD_SCK_Pin GPIO_PIN_13

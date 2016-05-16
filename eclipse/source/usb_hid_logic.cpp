@@ -3,6 +3,8 @@
 #include "usb_hid_logic.h"
 #include "secrets.h"
 
+void send_message(const char s[], uint8_t len);
+
 void usbKeyboardSendHex(USBD_HandleTypeDef *pdev, uint8_t *dat, uint16_t len){
 	for (int i = 0; i < len; i++){
 		uint8_t high = dat[i] / 16;
@@ -67,13 +69,16 @@ void usbHidLoop(MFRC522Desfire *mfrc522, USBD_HandleTypeDef *pdev){
 	while (1) {
 		HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET);
 		//Auf Erkennugn von RFID Karte warten
+		send_message("Wait for RFID\n", 14);
 		while (!mfrc522->PICC_IsNewCardPresent()){}
+		send_message("RFID detected\n", 14);
 		HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
 		//Melden, dass neue RFID Karte erkannt wurde
 		usbKeyboardSendString(pdev, (uint8_t*)"!:new::!", 8);
 		//UID auslesen und ausgeben
 		MFRC522::Uid uid;
 		if (mfrc522->PICC_Select(&uid) != mfrc522->STATUS_OK){
+			send_message("Err 00\n", 7);
 			continue;
 		}
 		usbKeyboardSendString(pdev, (uint8_t*)"!:uid:", 6);
@@ -82,19 +87,23 @@ void usbHidLoop(MFRC522Desfire *mfrc522, USBD_HandleTypeDef *pdev){
 
 		//Applikation OpendoScala auslesen
 		if (mfrc522->Desfire_SelectApplication(IKAFKAOPENDOSCALAAPPID) != mfrc522->STATUS_OK){
+			send_message("Err 01\n", 7);
 			continue;
 		}
 		if (mfrc522->Desfire_Authenticate(IKAFKAOPENDOSCALAKEYNO, opendoScalaKey) != mfrc522->STATUS_OK){
+			send_message("Err 02\n", 7);
 			continue;
 		}
 		byte data[32];
 		byte dataLen = 4;
 		if (mfrc522->Desfire_ReadData(IKAFKAOPENDOSCALAFILENO, 0, 4, data, &dataLen) != mfrc522->STATUS_OK){
+			send_message("Err 03\n", 7);
 			continue;
 		}
 		usbKeyboardSendString(pdev, (uint8_t*)"!:opnId:", 8);
 		usbKeyboardSendHex(pdev, data, 4);
 		usbKeyboardSendString(pdev, (uint8_t*)":!", 2);
+		send_message("Suc 00\n", 7);
 
 		//Applikation IkaFkaIdent auslesen
 		if (mfrc522->Desfire_SelectApplication(IKAFKAIDENTAPPID) != mfrc522->STATUS_OK){

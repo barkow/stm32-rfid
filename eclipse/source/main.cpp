@@ -75,7 +75,20 @@ void usbSendHex(USBD_HandleTypeDef *pdev, uint8_t *dat, uint16_t len);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
+void send_command(int command, void *message)
+{
+   asm("mov r0, %[cmd];"
+       "mov r1, %[msg];"
+       "bkpt #0xAB"
+         :
+         : [cmd] "r" (command), [msg] "r" (message)
+         : "r0", "r1", "memory");
+}
 
+void send_message(const char s[], uint8_t len){
+	uint32_t m[] = { 2/*stderr*/, (uint32_t)s, len };
+	send_command(0x05/* some interrupt ID */, m);
+}
 /* USER CODE END 0 */
 
 int main(void)
@@ -101,6 +114,9 @@ int main(void)
   //SPI2 wird in der Klasse display initialisiert
   MX_USART1_UART_Init();
   MX_USB_DEVICE_Init();
+
+  send_message("Hello world\n", 12);
+
 
   /* USER CODE BEGIN 2 */
   MFRC522Desfire mfrc522;

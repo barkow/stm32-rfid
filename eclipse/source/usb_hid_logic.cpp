@@ -67,12 +67,12 @@ void usbHidLoop(MFRC522Desfire *mfrc522, USBD_HandleTypeDef *pdev){
 	//Key für OpendoScala vorberechnen, da nicht mit kartenabhängigem Salt versehen
 	MFRC522Desfire::DesfireAesKey opendoScalaKey = mfrc522->DeriveKeyFromPassword(IKAFKAOPENDOSCALAPASSWORD, "");
 	while (1) {
-		HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET);
+		//HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET);
 		//Auf Erkennugn von RFID Karte warten
 		send_message("Wait for RFID\n", 14);
 		while (!mfrc522->PICC_IsNewCardPresent()){}
 		send_message("RFID detected\n", 14);
-		HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
+		//HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
 		//Melden, dass neue RFID Karte erkannt wurde
 		usbKeyboardSendString(pdev, (uint8_t*)"!:new::!", 8);
 		//UID auslesen und ausgeben

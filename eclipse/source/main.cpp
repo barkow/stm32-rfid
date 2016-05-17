@@ -35,6 +35,7 @@
 #include "crc.h"
 #include "usart.h"
 #include "usb_device.h"
+#include "tim.h"
 #include "gpio.h"
 //Spi.h wird nicht benötigt
 #include "spi.h"
@@ -54,7 +55,7 @@
 #ifdef USE_USB_CDC
 #include "usb_cdc_logic.h"
 #endif
-#include "display.h"
+#include "ikotron.h"
 
 /* USER CODE END Includes */
 
@@ -114,8 +115,11 @@ int main(void)
   //SPI2 wird in der Klasse display initialisiert
   MX_USART1_UART_Init();
   MX_USB_DEVICE_Init();
+  MX_TIM2_Init();
 
   send_message("Hello world\n", 12);
+  ikotron::init(&htim2);
+  ikotron::sendFrame(2050);
 
 
   /* USER CODE BEGIN 2 */

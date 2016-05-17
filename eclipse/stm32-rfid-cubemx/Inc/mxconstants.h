@@ -50,16 +50,10 @@
 #define RFID_MOSI_GPIO_Port GPIOA
 #define RFID_CS_Pin GPIO_PIN_1
 #define RFID_CS_GPIO_Port GPIOB
-#define LCD_CS_Pin GPIO_PIN_12
-#define LCD_CS_GPIO_Port GPIOB
-#define LCD_SCK_Pin GPIO_PIN_13
-#define LCD_SCK_GPIO_Port GPIOB
-#define LCD_DCMODE_Pin GPIO_PIN_14
-#define LCD_DCMODE_GPIO_Port GPIOB
-#define LCD_MOSI_Pin GPIO_PIN_15
-#define LCD_MOSI_GPIO_Port GPIOB
-#define LCD_RESET_Pin GPIO_PIN_8
-#define LCD_RESET_GPIO_Port GPIOA
+#define IKOTRON_DATA_Pin GPIO_PIN_12
+#define IKOTRON_DATA_GPIO_Port GPIOB
+#define IKOTRON_CLOCK_Pin GPIO_PIN_13
+#define IKOTRON_CLOCK_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

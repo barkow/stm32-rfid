@@ -34,7 +34,7 @@
 #include "stm32f1xx_hal.h"
 #include "crc.h"
 #include "usart.h"
-#include "usb_device.h"
+//#include "usb_device.h"
 #include "tim.h"
 #include "gpio.h"
 //Spi.h wird nicht benötigt
@@ -44,17 +44,7 @@
 #include "MFRC522Desfire.h"
 #include <stdexcept>
 #include "secrets.h"
-#ifndef USE_USB_HID
-#ifndef USE_USB_CDC
-#error("USB Verwendung (HID/CDC) nicht definiert")
-#endif
-#endif
-#ifdef USE_USB_HID
-#include "usb_hid_logic.h"
-#endif
-#ifdef USE_USB_CDC
-#include "usb_cdc_logic.h"
-#endif
+#include "MFRC522Desfire.h"
 #include "ikotron.h"
 
 /* USER CODE END Includes */
@@ -71,8 +61,6 @@ void SystemClock_Config(void);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
-void usbSendString(USBD_HandleTypeDef *pdev, uint8_t *dat, uint16_t len);
-void usbSendHex(USBD_HandleTypeDef *pdev, uint8_t *dat, uint16_t len);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
@@ -110,17 +98,12 @@ int main(void)
   MX_GPIO_Init();
   MX_CRC_Init();
   MX_SPI1_Init();
-  //SPI1 wird in der Klasse MFRC522Desfire initialisiert
-  //MX_SPI2_Init();
-  //SPI2 wird in der Klasse display initialisiert
   MX_USART1_UART_Init();
-  MX_USB_DEVICE_Init();
+  //MX_USB_DEVICE_Init();
   MX_TIM2_Init();
-
-  send_message("Hello world\n", 12);
   ikotron::init(&htim2);
-  ikotron::sendFrame(2050);
 
+  send_message("Ikotron\n", 8);
 
   /* USER CODE BEGIN 2 */
   MFRC522Desfire mfrc522;
@@ -133,12 +116,69 @@ int main(void)
   mfrc522.PCD_SetAntennaGain(0xff);
 
   /* Infinite loop */
-#ifdef USE_USB_HID
-  usbHidLoop(&mfrc522, &hUsbDeviceFS);
-#endif
-#ifdef USE_USB_CDC
-  usbCdcLoop(&mfrc522, &hUsbDeviceFS);
-#endif
+  //Key für OpendoScala vorberechnen, da nicht mit kartenabhängigem Salt versehen
+  MFRC522Desfire::DesfireAesKey opendoScalaKey = mfrc522.DeriveKeyFromPassword(IKAFKAOPENDOSCALAPASSWORD, "");
+  while (1) {
+	  HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET);
+	  //Auf Erkennung von RFID Karte warten
+	  send_message("Wait for RFID\n", 14);
+	  while (!mfrc522.PICC_IsNewCardPresent()){}
+	  send_message("RFID detected\n", 14);
+	  HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
+	  //UID auslesen und ausgeben
+	  MFRC522::Uid uid;
+
+	  if (mfrc522.PICC_Select(&uid) != mfrc522.STATUS_OK){
+		  send_message("Retry\n", 6);
+		  if (mfrc522.PICC_Select(&uid) != mfrc522.STATUS_OK){
+			  send_message("Retry\n", 6);
+			  if (mfrc522.PICC_Select(&uid) != mfrc522.STATUS_OK){
+				  send_message("Err 00\n", 7);
+				  mfrc522.PICC_HaltA();
+				  continue;
+			  }
+		  }
+
+	  }
+
+	  //Applikation OpendoScala auslesen
+	  if (mfrc522.Desfire_SelectApplication(IKAFKAOPENDOSCALAAPPID) != mfrc522.STATUS_OK){
+		  send_message("Retry\n", 6);
+		  if (mfrc522.Desfire_SelectApplication(IKAFKAOPENDOSCALAAPPID) != mfrc522.STATUS_OK){
+			  send_message("Retry\n", 6);
+			  if (mfrc522.Desfire_SelectApplication(IKAFKAOPENDOSCALAAPPID) != mfrc522.STATUS_OK){
+				  send_message("Err 01\n", 7);
+				  mfrc522.PICC_HaltA();
+				  continue;
+			  }
+		  }
+
+	  }
+
+	  if (mfrc522.Desfire_Authenticate(IKAFKAOPENDOSCALAKEYNO, opendoScalaKey) != mfrc522.STATUS_OK){
+		  send_message("Retry\n", 6);
+		  if (mfrc522.Desfire_Authenticate(IKAFKAOPENDOSCALAKEYNO, opendoScalaKey) != mfrc522.STATUS_OK){
+			  send_message("Retry\n", 6);
+			  if (mfrc522.Desfire_Authenticate(IKAFKAOPENDOSCALAKEYNO, opendoScalaKey) != mfrc522.STATUS_OK){
+				  send_message("Err 02\n", 7);
+				  mfrc522.PICC_HaltA();
+				  continue;
+			  }
+		  }
+
+	  }
+	  byte data[32];
+	  byte dataLen = 4;
+	  if (mfrc522.Desfire_ReadData(IKAFKAOPENDOSCALAFILENO, 0, 4, data, &dataLen) != mfrc522.STATUS_OK){
+		  send_message("Err 03\n", 7);
+		  mfrc522.PICC_HaltA();
+		  continue;
+	  }
+	  //In data steht die Id
+	  ikotron::sendFrame(2050);
+	  send_message("TransmitId\n", 11);
+	  mfrc522.PICC_HaltA();
+  }
 }
 
 /** System Clock Configuration

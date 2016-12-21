@@ -54,7 +54,7 @@
 #ifdef USE_USB_CDC
 #include "usb_cdc_logic.h"
 #endif
-#include "display.h"
+//#include "display.h"
 
 /* USER CODE END Includes */
 
@@ -86,8 +86,12 @@ void send_command(int command, void *message)
 }
 
 void send_message(const char s[], uint8_t len){
+#ifndef USE_USB_HID
+#ifndef USE_USB_CDC
 	uint32_t m[] = { 2/*stderr*/, (uint32_t)s, len };
 	send_command(0x05/* some interrupt ID */, m);
+#endif
+#endif
 }
 /* USER CODE END 0 */
 
@@ -113,7 +117,9 @@ int main(void)
   //MX_SPI2_Init();
   //SPI2 wird in der Klasse display initialisiert
   MX_USART1_UART_Init();
+  HAL_GPIO_WritePin(LCD_RESET_GPIO_Port, LCD_RESET_Pin, GPIO_PIN_RESET);
   MX_USB_DEVICE_Init();
+  HAL_GPIO_WritePin(LCD_RESET_GPIO_Port, LCD_RESET_Pin, GPIO_PIN_SET);
 
   send_message("Hello world\n", 12);
 

@@ -4,7 +4,7 @@
   * Description        : This file contains the common defines of the application
   ******************************************************************************
   *
-  * COPYRIGHT(c) 2016 STMicroelectronics
+  * COPYRIGHT(c) 2017 STMicroelectronics
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -38,10 +38,18 @@
 
 /* Private define ------------------------------------------------------------*/
 
-#define LED1_Pin GPIO_PIN_13
-#define LED1_GPIO_Port GPIOC
+#define IKOTRON_CLOCK_Pin GPIO_PIN_13
+#define IKOTRON_CLOCK_GPIO_Port GPIOC
+#define IKOTRON_DATA_Pin GPIO_PIN_14
+#define IKOTRON_DATA_GPIO_Port GPIOC
+#define MISC_OUT2_Pin GPIO_PIN_15
+#define MISC_OUT2_GPIO_Port GPIOC
+#define MISC_OUT1_Pin GPIO_PIN_0
+#define MISC_OUT1_GPIO_Port GPIOA
 #define RFID_RESET_Pin GPIO_PIN_3
 #define RFID_RESET_GPIO_Port GPIOA
+#define RFID_IRQ_Pin GPIO_PIN_4
+#define RFID_IRQ_GPIO_Port GPIOA
 #define RFID_SCK_Pin GPIO_PIN_5
 #define RFID_SCK_GPIO_Port GPIOA
 #define RFID_MISO_Pin GPIO_PIN_6
@@ -50,10 +58,10 @@
 #define RFID_MOSI_GPIO_Port GPIOA
 #define RFID_CS_Pin GPIO_PIN_1
 #define RFID_CS_GPIO_Port GPIOB
-#define IKOTRON_DATA_Pin GPIO_PIN_12
-#define IKOTRON_DATA_GPIO_Port GPIOB
-#define IKOTRON_CLOCK_Pin GPIO_PIN_13
-#define IKOTRON_CLOCK_GPIO_Port GPIOB
+#define BUZZER_Pin GPIO_PIN_12
+#define BUZZER_GPIO_Port GPIOB
+#define USB_ENUMERATE_Pin GPIO_PIN_8
+#define USB_ENUMERATE_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

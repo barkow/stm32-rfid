@@ -26,6 +26,7 @@ _sbrk(int incr)
   //extern char _Heap_Limit; // Defined by the linker.
   extern uint8_t _end;
   extern uint16_t _heap_size;
+  extern uint8_t _axel_size;
   //char _Heap_Begin = 0;
   //char _Heap_Limit = 0;
 
@@ -44,7 +45,7 @@ _sbrk(int incr)
   // word boundary, hence make sure we always add a multiple of
   // 4 to it.
   incr = (incr + 3) & (~3); // align value to 4
-  if (current_heap_end + incr > (&_end + _heap_size))
+  if (current_heap_end + incr > (&_heap_size))
     {
       // Some of the libstdc++-v3 tests rely upon detecting
       // out of memory errors, so do not abort here.

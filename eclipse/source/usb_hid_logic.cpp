@@ -81,8 +81,8 @@ void usbHidLoop(MFRC522Desfire *mfrc522, USBD_HandleTypeDef *pdev){
 			MFRC522::Uid uid;
 			if (mfrc522->PICC_Select(&uid) != mfrc522->STATUS_OK){
 				//send_message("Err 00\n", 7);
-				//continue;
-				throw std::exception();
+				continue;
+				//throw std::exception();
 			}
 			usbKeyboardSendString(pdev, (uint8_t*)"!:uid:", 6);
 			usbKeyboardSendHex(pdev, uid.uidByte, 7);
@@ -91,8 +91,8 @@ void usbHidLoop(MFRC522Desfire *mfrc522, USBD_HandleTypeDef *pdev){
 			//Applikation OpendoScala auslesen
 			if (mfrc522->Desfire_SelectApplication(IKAFKAOPENDOSCALAAPPID) != mfrc522->STATUS_OK){
 				//send_message("Err 01\n", 7);
-				//continue;
-				throw std::exception();
+				continue;
+				//throw std::exception();
 			}
 			if (mfrc522->Desfire_Authenticate(IKAFKAOPENDOSCALAKEYNO, opendoScalaKey) != mfrc522->STATUS_OK){
 				send_message("Err 02\n", 7);

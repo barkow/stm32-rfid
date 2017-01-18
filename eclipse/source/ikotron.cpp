@@ -10,6 +10,7 @@ uint32_t ikotron::frame[2];
 uint8_t ikotron::bitCnt;
 uint8_t ikotron::phaseCnt;
 TIM_HandleTypeDef* ikotron::htim = NULL;
+extern TIM_HandleTypeDef htim1;
 
 void ikotron::sendFrame(uint16_t id) {
 	/*Frame Format: D950083 0802 01 E2 D
@@ -76,9 +77,32 @@ extern "C" void sendLoopWrapper(){
 	ikotron::sendLoop();
 }
 
+static volatile bool BuzzerStatus = false;
+
+static volatile uint32_t BuzzerCounter = 0;
+
+void BuzzerBeep(void){
+	BuzzerCounter = 500;
+	BuzzerStatus = true;
+	HAL_TIM_Base_Start_IT(&htim1);
+}
+
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	if (htim->Instance==TIM2){
 		ikotron::sendLoop();
 	}
+	if (htim->Instance==TIM1){
+		if (BuzzerStatus){
+			HAL_GPIO_TogglePin(BUZZER_GPIO_Port, BUZZER_Pin);
+			BuzzerCounter--;
+			if (BuzzerCounter == 0){
+				BuzzerStatus = false;
+				HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_RESET);
+				HAL_TIM_Base_Stop_IT(&htim1);
+			}
+		}
+	}
 }
+
+
 

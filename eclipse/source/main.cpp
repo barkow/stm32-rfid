@@ -75,8 +75,8 @@ void send_command(int command, void *message)
 }
 
 void send_message(const char s[], uint8_t len){
-	uint32_t m[] = { 2/*stderr*/, (uint32_t)s, len };
-	send_command(0x05/* some interrupt ID */, m);
+	//uint32_t m[] = { 2/*stderr*/, (uint32_t)s, len };
+	//send_command(0x05/* some interrupt ID */, m);
 }
 /* USER CODE END 0 */
 
@@ -100,6 +100,7 @@ int main(void)
   MX_SPI1_Init();
   MX_USART1_UART_Init();
   //MX_USB_DEVICE_Init();
+  MX_TIM1_Init();
   MX_TIM2_Init();
   ikotron::init(&htim2);
 
@@ -119,12 +120,10 @@ int main(void)
   //Key für OpendoScala vorberechnen, da nicht mit kartenabhängigem Salt versehen
   MFRC522Desfire::DesfireAesKey opendoScalaKey = mfrc522.DeriveKeyFromPassword(IKAFKAOPENDOSCALAPASSWORD, "");
   while (1) {
-	  HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET);
 	  //Auf Erkennung von RFID Karte warten
 	  send_message("Wait for RFID\n", 14);
 	  while (!mfrc522.PICC_IsNewCardPresent()){}
 	  send_message("RFID detected\n", 14);
-	  HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
 	  //UID auslesen und ausgeben
 	  MFRC522::Uid uid;
 
@@ -176,6 +175,7 @@ int main(void)
 	  }
 	  //In data steht die Id
 	  ikotron::sendFrame(2050);
+	  BuzzerBeep();
 	  send_message("TransmitId\n", 11);
 	  mfrc522.PICC_HaltA();
   }

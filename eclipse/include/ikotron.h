@@ -25,6 +25,6 @@ public:
 	}
 };
 
-
+void BuzzerBeep(void);
 
 #endif /* INCLUDE_IKOTRON_H_ */

@@ -118,7 +118,8 @@ int main(void)
 
   /* Infinite loop */
   //Key für OpendoScala vorberechnen, da nicht mit kartenabhängigem Salt versehen
-  MFRC522Desfire::DesfireAesKey opendoScalaKey = mfrc522.DeriveKeyFromPassword(IKAFKAOPENDOSCALAPASSWORD, "");
+  //MFRC522Desfire::DesfireAesKey opendoScalaKey = mfrc522.DeriveKeyFromPassword(IKAFKAOPENDOSCALAPASSWORD, "");
+  MFRC522Desfire::DesfireAesKey ikotronKey = mfrc522.DeriveKeyFromPassword(IKAFKAIKOTRONCARDIDPASSWORD, IKAFKAIKOTRONCARDIDSALT);
   while (1) {
 	  //Auf Erkennung von RFID Karte warten
 	  send_message("Wait for RFID\n", 14);
@@ -141,11 +142,11 @@ int main(void)
 	  }
 
 	  //Applikation OpendoScala auslesen
-	  if (mfrc522.Desfire_SelectApplication(IKAFKAOPENDOSCALAAPPID) != mfrc522.STATUS_OK){
+	  if (mfrc522.Desfire_SelectApplication(IKAFKAIKOTRONAPPID) != mfrc522.STATUS_OK){
 		  send_message("Retry\n", 6);
-		  if (mfrc522.Desfire_SelectApplication(IKAFKAOPENDOSCALAAPPID) != mfrc522.STATUS_OK){
+		  if (mfrc522.Desfire_SelectApplication(IKAFKAIKOTRONAPPID) != mfrc522.STATUS_OK){
 			  send_message("Retry\n", 6);
-			  if (mfrc522.Desfire_SelectApplication(IKAFKAOPENDOSCALAAPPID) != mfrc522.STATUS_OK){
+			  if (mfrc522.Desfire_SelectApplication(IKAFKAIKOTRONAPPID) != mfrc522.STATUS_OK){
 				  send_message("Err 01\n", 7);
 				  mfrc522.PICC_HaltA();
 				  continue;
@@ -154,11 +155,11 @@ int main(void)
 
 	  }
 
-	  if (mfrc522.Desfire_Authenticate(IKAFKAOPENDOSCALAKEYNO, opendoScalaKey) != mfrc522.STATUS_OK){
+	  if (mfrc522.Desfire_Authenticate(IKAFKAIKOTRONCARDIDKEYNO, ikotronKey) != mfrc522.STATUS_OK){
 		  send_message("Retry\n", 6);
-		  if (mfrc522.Desfire_Authenticate(IKAFKAOPENDOSCALAKEYNO, opendoScalaKey) != mfrc522.STATUS_OK){
+		  if (mfrc522.Desfire_Authenticate(IKAFKAIKOTRONCARDIDKEYNO, ikotronKey) != mfrc522.STATUS_OK){
 			  send_message("Retry\n", 6);
-			  if (mfrc522.Desfire_Authenticate(IKAFKAOPENDOSCALAKEYNO, opendoScalaKey) != mfrc522.STATUS_OK){
+			  if (mfrc522.Desfire_Authenticate(IKAFKAIKOTRONCARDIDKEYNO, ikotronKey) != mfrc522.STATUS_OK){
 				  send_message("Err 02\n", 7);
 				  mfrc522.PICC_HaltA();
 				  continue;
@@ -168,13 +169,13 @@ int main(void)
 	  }
 	  byte data[32];
 	  byte dataLen = 4;
-	  if (mfrc522.Desfire_ReadData(IKAFKAOPENDOSCALAFILENO, 0, 4, data, &dataLen) != mfrc522.STATUS_OK){
+	  if (mfrc522.Desfire_ReadData(IKAFKAIKOTRONCARDIDFILENO, 0, 4, data, &dataLen) != mfrc522.STATUS_OK){
 		  send_message("Err 03\n", 7);
 		  mfrc522.PICC_HaltA();
 		  continue;
 	  }
 	  //In data steht die Id
-	  ikotron::sendFrame(2050);
+	  ikotron::sendFrame((((uint32_t)data[0]) << 24) | (((uint32_t)data[1]) << 16) | (((uint32_t)data[2]) << 8) | (((uint32_t)data[3]) << 0));
 	  BuzzerBeep();
 	  send_message("TransmitId\n", 11);
 	  mfrc522.PICC_HaltA();
